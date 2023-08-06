@@ -1,4 +1,7 @@
-export const App = () => {
+import { Navbar } from "./components/Navbar"
 
-  return <h1>HELLO SOLJ!</h1>
+export const App = () => {
+  return (
+  <Navbar />
+  )
 }
