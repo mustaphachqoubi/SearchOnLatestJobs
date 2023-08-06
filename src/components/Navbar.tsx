@@ -3,12 +3,36 @@ import { CgTrack } from 'react-icons/cg'
 import { TbSitemap } from 'react-icons/tb'
 import { HiMenuAlt1 } from 'react-icons/hi'
 import { useState } from "react"
+import { Link } from "react-router-dom"
 
-export const Navbar = () => {
+const Navbar: React.FC = () => {
 
   const [menuNavDisplay, setMenuNavDisplay] = useState("none")
 
   const handleMenuClick = () => menuNavDisplay === "none" ? setMenuNavDisplay("flex") : setMenuNavDisplay("none")
+
+
+  type MenuListDataTypes = {
+    id: number,
+    to: string,
+    icon: any,
+    text: string
+  }
+
+  const MenuListData: MenuListDataTypes[]= [
+  {
+    id: 1,
+    to: "/newjobs",
+    icon: <CgTrack />,
+    text: "New Jobs"
+  },
+  {
+    id: 2,
+    to: "/appliedjobs",
+    icon: <TbSitemap />,
+    text: "Applied Jobs"
+  }
+  ]
 
   const Navbar = styled.div`
   border-bottom: 2px solid white;
@@ -44,7 +68,7 @@ export const Navbar = () => {
   width: 100%
 `
 
-  const List = styled.div`
+  const List = styled(Link)`
   border: 2px solid white;
   border-radius: .3rem;
   padding: .5rem;
@@ -55,6 +79,8 @@ export const Navbar = () => {
   font-size: .7rem;
   font-weight: bold;
   cursor: pointer;
+  color: white;
+  text-decoration: none;
   &:hover{
     background: white;
     color: #242424;
@@ -92,6 +118,7 @@ export const Navbar = () => {
 `
 
   const MenuNav = styled.div`
+  background: #242424;
   display: none;
   flex-direction: column;
   align-items: center;
@@ -99,7 +126,7 @@ export const Navbar = () => {
   gap: .5rem;
   padding: 1.5rem;
   position: absolute;
-  top: 4.5rem;
+  top: 4.6rem;
   left: 0;
   right: 0;
   border: 2px solid white;
@@ -111,7 +138,7 @@ export const Navbar = () => {
   }
 `
 
-  const MenuList = styled.div`
+  const MenuList = styled(Link)`
   border: 2px solid white;
   border-radius: .3rem;
   padding: .5rem;
@@ -123,16 +150,20 @@ export const Navbar = () => {
   font-weight: bold;
   cursor: pointer;
   width: 100%;
+  text-decoration: none;
+  color: white;
   &:hover{
     background: white;
     color: #242424;
   }
 `
 
+
+
   return (
     <Navbar>
 
-      <Logo> 
+        <Logo> 
         <Span>S</Span>
         <Span>O</Span>
         <Span>L</Span>
@@ -140,16 +171,16 @@ export const Navbar = () => {
       </Logo>
 
       <NavList>
-        <List><Icon><CgTrack /></Icon> New Jobs</List>
-        <List> <Icon><TbSitemap/></Icon> Applied Jobs</List>
+        { MenuListData.map( (menuList) => ( <List key={menuList.id} onClick={handleMenuClick} to={menuList.to}><Icon>{menuList.icon} </Icon> {menuList.text} </List> ) ) }
         <Menu onClick={handleMenuClick}><Icon><HiMenuAlt1 /></Icon></Menu>
       </NavList>
 
       <MenuNav>
-        <MenuList><Icon><CgTrack /></Icon> New Jobs</MenuList>
-        <MenuList> <Icon><TbSitemap/></Icon> Applied Jobs</MenuList>
+        { MenuListData.map( (menuList) => ( <MenuList key={menuList.id} onClick={handleMenuClick} to={menuList.to}><Icon>{menuList.icon} </Icon> {menuList.text} </MenuList> ) ) }
       </MenuNav>
 
     </Navbar>
   )
 }
+
+export default Navbar
