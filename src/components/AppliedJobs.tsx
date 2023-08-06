@@ -1,4 +1,4 @@
-import withStyle from "./withStyle"
+import WithStyle from "./WithStyle"
 
 const AppliedJobs: React.FC = () => {
   return (
@@ -6,6 +6,6 @@ const AppliedJobs: React.FC = () => {
   )
 }
 
-const AppliedJobsWithStyle = withStyle(AppliedJobs)
+const AppliedJobsWithStyle = WithStyle(AppliedJobs)
 
 export default AppliedJobsWithStyle

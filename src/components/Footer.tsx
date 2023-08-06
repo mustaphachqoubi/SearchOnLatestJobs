@@ -5,6 +5,7 @@ import { BsFillArrowThroughHeartFill } from 'react-icons/bs'
 const FooterStyled = styled.div`
   width: 100%;
   border-top: 2px solid white;
+  background-color: #242424
 `
 
 const FooterContent = styled.div`

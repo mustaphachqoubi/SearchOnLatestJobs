@@ -1,11 +1,12 @@
 import React from "react"
 import { styled } from "styled-components"
 
-const withStyle = (Component: any): React.FC => {
+const WithStyle = (Component: any): React.FC => {
 
   const ComponentStyled = styled.div`
   width: 100%;
-  height: 70vh;
+  height: 100%;
+  padding: 1rem 0rem 1rem 0rem
 `
 
   return (props) => {
@@ -15,4 +16,4 @@ const withStyle = (Component: any): React.FC => {
   }
 }
 
-export default withStyle
+export default WithStyle

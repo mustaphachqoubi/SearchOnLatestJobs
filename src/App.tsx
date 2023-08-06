@@ -6,6 +6,7 @@ const Navbar = lazy(() => import('./components/Navbar'));
 const NewJobs = lazy(() => import('./components/NewJobs'));
 const AppliedJobs = lazy(() => import('./components/AppliedJobs'));
 const Footer= lazy(() => import('./components/Footer'));
+const Job = lazy(() => import('./components/Job'));
 
 
   const LoadingStyled = styled.h1`
@@ -35,6 +36,7 @@ export const App: React.FC = () => {
         <Routes>
           <Route index path="/newjobs" element={<Suspense fallback={<Loading />}><NewJobs /></Suspense>}/>
           <Route path="/Appliedjobs" element={<Suspense fallback={<Loading />}><AppliedJobs /></Suspense>}/>
+          <Route path="/job/:id" element={<Suspense fallback={<Loading />}><Job /></Suspense>}/>
         </Routes>
 
         <Suspense fallback={<Loading />}>
