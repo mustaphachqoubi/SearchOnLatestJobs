@@ -93,7 +93,7 @@ const NewJobs: React.FC = () => {
           <JobCompany>{job.company}</JobCompany>
          <Container>
           <JobLocation>{job.location}</JobLocation>
-          <JobTime>{job.time}</JobTime>
+          <JobTime>{job.posted}</JobTime>
           </Container> 
         </Job>
       ) ) }
