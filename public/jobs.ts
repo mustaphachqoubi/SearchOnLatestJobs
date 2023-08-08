@@ -4,7 +4,8 @@ interface jobsTypes {
   location: string;
   posted: string;
   company: string;
-  link: string
+  link: string,
+  description: string;
 }
 
 export const jobs: jobsTypes[] = [
@@ -14,7 +15,8 @@ export const jobs: jobsTypes[] = [
   location: "Rabat, agdal, morocco", 
   posted: "23-08-2023",
   company: "Amazon",
-  link: "/job:1"
+  link: "/job:1",
+  description: "description test test test"
   },
   {
   id: 2,
@@ -22,7 +24,8 @@ export const jobs: jobsTypes[] = [
   location: "Rabat, agdal, morocco", 
   posted: "23-08-2023",
   company: "Amazon",
-  link: "/job:2"
+  link: "/job:2",
+  description: "description test test test"
   },
   {
   id: 3,
@@ -30,7 +33,8 @@ export const jobs: jobsTypes[] = [
   location: "Rabat, agdal, morocco", 
   posted: "23-08-2023",
   company: "Amazon",
-  link: "/job:3"
+  link: "/job:3",
+  description: "description test test test"
   },
   {
   id: 4,
@@ -38,7 +42,8 @@ export const jobs: jobsTypes[] = [
   location: "Rabat, agdal, morocco", 
   posted: "23-08-2023",
   company: "Amazon",
-  link: "/job:4"
+  link: "/job:4",
+  description: "description test test test",
   },
   {
   id: 5,
@@ -46,7 +51,8 @@ export const jobs: jobsTypes[] = [
   location: "Rabat, agdal, morocco", 
   posted: "23-08-2023",
   company: "Amazon",
-  link: "/job:5"
+  link: "/job:5",
+  description: "description test test test",
   },
   {
   id: 6,
@@ -54,6 +60,7 @@ export const jobs: jobsTypes[] = [
   location: "Rabat, agdal, morocco", 
   posted: "23-08-2023",
   company: "Amazon",
-  link: "/job:6"
+  link: "/job:6",
+  description: "description test test test",
   },
 ]

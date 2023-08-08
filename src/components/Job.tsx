@@ -101,7 +101,7 @@ const Job: React.FC = () => {
   return (
    <JobStyled>
         {
-          jobs.length > 0 ? jobs.map(job => job.id === jobId && Object.keys(job).map(j => j !== "id" && j !== "link" && (
+          jobs.length > 0 ? jobs.map(job => job.id === jobId && Object.keys(job).map(j => j !== "id" && j !== "link" && j !== "description" && (
           <JobContainer key={job.id}>
             <JobTag>{j === "company" ? "" : "Job"} {j}</JobTag>
             <JobText>{job[j]}</JobText>
@@ -112,7 +112,7 @@ const Job: React.FC = () => {
 
       <Hr />
       <JobDescription>
-        JobDescription
+        {jobs?.map(job => job.id === jobId && job.description)}
       </JobDescription>
       <Hr />
 
