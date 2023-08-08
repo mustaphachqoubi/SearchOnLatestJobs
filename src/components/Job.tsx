@@ -6,10 +6,10 @@ import { styled } from "styled-components"
 
 const Job: React.FC = () => {
 
-
   const location = useLocation()
   const [jobId, setJobId] = useState<number>(-1)
   const [loading , setLoading] = useState<string>("")
+  const [jobApplied] = useState(false)
 
   useEffect(() => {jobs.length > 0 ? jobs.map(job => {`/job/${job.id}` === location.pathname && setJobId(job.id)}) : setLoading("Loading...") }, [])
 
@@ -98,6 +98,44 @@ const Job: React.FC = () => {
   text-decoration: none;
 `
 
+  const ApplyToJob = styled.div`
+  display: flex;
+  flex-direction:column;
+  align-items: center;
+  gap: 1rem
+`
+
+  const ApplyAndTrackTheProcess = styled(Link)`
+  border: 2px solid white;
+  padding: .5rem;
+  border-radius: 1rem;
+  width: 10rem;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    color: #242424
+  }
+  transition: all .4s ease;
+  color: white;
+  text-decoration: none;
+`
+
+  const ApplyOnWebsite = styled(Link)`
+  border: 2px solid white;
+  padding: .5rem;
+  border-radius: 1rem;
+  width: 10rem;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    color: #242424
+  }
+  transition: all .4s ease;
+  color: white;
+  text-decoration: none;
+`
+
+
   return (
    <JobStyled>
         {
@@ -116,11 +154,26 @@ const Job: React.FC = () => {
       </JobDescription>
       <Hr />
 
-      <CheckContainer>
+     {
+        jobApplied === false ? (
+        <ApplyToJob>
+        <ApplyAndTrackTheProcess to="/">
+          Apply & track
+        </ApplyAndTrackTheProcess>
+
+        <ApplyOnWebsite to="/">
+          Apply on Indeed
+        </ApplyOnWebsite>
+      </ApplyToJob>
+        ) : (
+        <CheckContainer>
         <CheckJobIn to="/appliedjobs">Check job process</CheckJobIn>
-        <CheckJobIn to="https://google.com" target="_blank">Check job in Linkedin</CheckJobIn>
+        <CheckJobIn to="https://google.com" target="_blank">Check job on Linkedin</CheckJobIn>
       </CheckContainer>
-    </JobStyled> 
+        )
+      } 
+
+          </JobStyled> 
   )
 }
 

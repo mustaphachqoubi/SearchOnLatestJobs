@@ -4,6 +4,7 @@ import { TbSitemap } from 'react-icons/tb'
 import { HiMenuAlt1 } from 'react-icons/hi'
 import { useState } from "react"
 import { Link } from "react-router-dom"
+import React from "react"
 
 const Navbar: React.FC = () => {
 
@@ -101,10 +102,18 @@ const Navbar: React.FC = () => {
   font-size: .7rem;
   font-weight: bold;
   cursor: pointer;
+  ${
+  menuNavDisplay === "flex" ? `background: white;color: #242424;
+  &:hover{
+    color: white;
+    background: #242424;}
+  ` : `background: #242424; color: white;
   &:hover{
     background: white;
     color: #242424;
-  }
+  }`
+  };
+
   @media (max-width: 400px){
     display: flex
   }
