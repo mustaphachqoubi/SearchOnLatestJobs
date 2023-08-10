@@ -172,8 +172,7 @@ const Job: React.FC = () => {
       </CheckContainer>
         )
       } 
-
-          </JobStyled> 
+    </JobStyled> 
   )
 }
 
