@@ -21,3 +21,16 @@ div{
   user-select: none
 }
 
+.selectedCompany{
+  background-color: white;
+  color: #242424
+}
+
+.nonSelectedCompany{
+  color: white;
+  background-color: #242424
+}
+.nonSelectedCompany:hover{
+  background-color: #242424;
+  opacity: .6
+}

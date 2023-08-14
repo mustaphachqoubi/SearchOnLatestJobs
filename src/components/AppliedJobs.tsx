@@ -1,55 +1,64 @@
+import { styled } from "styled-components"
 import WithStyle from "./WithStyle"
-import * as d3 from 'd3';
-import { useEffect, useRef } from "react";
+import { useState } from "react"
+import Tree from './Tree'
 
 const AppliedJobs: React.FC = () => {
 
-  const chartRef = useRef(null);
+  const [selectedCompany, setSelectedCompany] = useState(1)
 
-  useEffect(() => {
-    const width = 928;
-    const marginTop = 10;
-    const marginRight = 10;
-    const marginBottom = 10;
-    const marginLeft = 40;
+  const Companies = [{id: 1, name: "All"}, {id: 2, name: "Youtube"}, {id: 3, name: "Facebook"}]
 
-    // Load your JSON data using fetch
-    fetch('../../public/flare-2.json')
-      .then(response => response.json())
-      .then(data => {
-        const root = d3.hierarchy(data);
-        const dx = 10;
-        const dy = (width - marginRight - marginLeft) / (1 + root.height);
+  const handleSelectedCompany = (id: number) => {
+    setSelectedCompany(id)  
+  }
 
-        const tree = d3.tree().nodeSize([dx, dy]);
+  const AppliedJobs = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+`
 
-        const svg = d3.select(chartRef.current)
-          .attr('width', width)
-          .attr('height', dx)
-          .attr('viewBox', [-marginLeft, -marginTop, width, dx])
-          .attr('style', 'max-width: 100%; height: auto; font: 10px sans-serif; user-select: none;');
+  const SelectCompany = styled.div`
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  overflow: hidden;
+  overflow-x: auto;
+  width: 100%;
+  &::-webkit-scrollbar {
+  display: none;
+}
+`
 
-        function update(event, source) {
-          // Implement your update function here...
-        }
+  const Company = styled.div`
+  border: 2px solid white;
+  border-radius: .3rem;
+  padding: .3rem 1rem;
+  font-size: .8rem;
+  font-weight: bold;
+  cursor: pointer;
+`
 
-        root.x0 = dy / 2;
-        root.y0 = 0;
-        root.descendants().forEach((d, i) => {
-          d.id = i;
-          d._children = d.children;
-          if (d.depth && d.data.name.length !== 7) d.children = null;
-        });
+  const TreeContainer = styled.div`
+`
 
-        update(null, root);
-      })
-      .catch(error => {
-        console.error('Error loading data:', error);
-      });
-  }, []);
+  return (
+    <AppliedJobs>
+      <SelectCompany>
+        {Companies.map(company => <Company className={selectedCompany === company.id ? "selectedCompany" : "nonSelectedCompany"} 
+          key={company.id} onClick={() => handleSelectedCompany(company.id)}>{company.name}  </Company>)}
+      </SelectCompany>
 
-  return <svg ref={chartRef} />;
-
+      <TreeContainer>
+        <Tree />
+      </TreeContainer>
+    </AppliedJobs>
+  )
 }
 
 

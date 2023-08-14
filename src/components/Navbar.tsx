@@ -43,7 +43,11 @@ const Navbar: React.FC = () => {
   position: relative
 `
 
-  const Logo = styled.h2`
+  const Logo = styled(Link)`
+    font-size: 1.5rem;
+    padding: 1.24rem 0rem;
+    text-decoration: none;
+    color: white;
    font-weight: bold;
    display: flex;
    justify-content: center;
@@ -52,7 +56,7 @@ const Navbar: React.FC = () => {
    height: 2rem;
    position: relative;
    cursor: pointer;
-   width: 7rem
+   width: 5.7rem;
 `
     
   const Span = styled.span`
@@ -103,11 +107,7 @@ const Navbar: React.FC = () => {
   font-weight: bold;
   cursor: pointer;
   ${
-  menuNavDisplay === "flex" ? `background: white;color: #242424;
-  &:hover{
-    color: white;
-    background: #242424;}
-  ` : `background: #242424; color: white;
+  menuNavDisplay === "flex" ? `background: white;color: #242424` : `background: #242424; color: white;
   &:hover{
     background: white;
     color: #242424;
@@ -172,7 +172,7 @@ const Navbar: React.FC = () => {
   return (
     <Navbar>
 
-        <Logo> 
+        <Logo to="/"> 
         <Span>S</Span>
         <Span>O</Span>
         <Span>L</Span>
