@@ -8,23 +8,25 @@ const AppliedJobs = lazy(() => import('./components/AppliedJobs'));
 const Footer= lazy(() => import('./components/Footer'));
 const Job = lazy(() => import('./components/Job'));
 const NotFound = lazy(() => import('./components/NotFound'));
-const Login = lazy(() => import('./components/Register/Login/Login'))
-const SignUp = lazy(() => import('./components/Register/Signup/Signup'))
-const Home = lazy(() => import('./components/Home'))
-
+const Login = lazy(() => import('./components/Register/Login/Login'));
+const SignUp = lazy(() => import('./components/Register/Signup/Signup'));
+const Home = lazy(() => import('./components/Home'));
 
   const LoadingStyled = styled.h1`
-  width: 100%;
-  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   font-weight: bold;
-  padding: 1rem
+  padding: 1rem;
+  gap: 1rem;
 `
 
+	const Gif = styled.img`
+	width: 50px;
+	`
+
 const Loading = () => {
-  return <LoadingStyled>Loading ...</LoadingStyled>
+  return <LoadingStyled>Loading <Gif src="https://media.tenor.com/RVvnVPK-6dcAAAAM/reload-cat.gif" /></LoadingStyled>
 }
 
 export const App: React.FC = () => {

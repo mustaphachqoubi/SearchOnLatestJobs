@@ -8,6 +8,35 @@ interface jobsTypes {
   description: string;
 }
 
+interface AppliedJobsTypes {
+  id: number;
+  title: string;
+  company: string;
+  interview: boolean;
+  job: boolean;
+  gohsting: boolean
+}
+
+
+export const AppliedJobs: AppliedJobsTypes[] = [
+  {
+    id: 1,
+    title: "Frontend developer",
+    company: "Youtube",
+    interview: true,
+    job: true,
+    gohsting: false,
+  },
+  {
+    id: 2,
+    title: "Frontend developer",
+    company: "Facebook",
+    interview: false,
+    job: false,
+    gohsting: true,
+  },
+]
+
 export const jobs: jobsTypes[] = [
   {
   id: 1,

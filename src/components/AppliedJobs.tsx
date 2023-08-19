@@ -14,6 +14,7 @@ const AppliedJobs: React.FC = () => {
   }
 
   const AppliedJobs = styled.div`
+overflow: hidden;
   width: 100%;
   height: 100%;
   display: flex;
