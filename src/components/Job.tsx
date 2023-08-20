@@ -4,14 +4,6 @@ import { jobs } from "../../public/jobs"
 import React, { useEffect, useState } from "react"
 import { styled } from "styled-components"
 
-const Job: React.FC = () => {
-
-  const location = useLocation()
-  const [jobId, setJobId] = useState<number>(-1)
-  const [loading , setLoading] = useState<string>("")
-  const [jobApplied] = useState(false)
-
-  useEffect(() => {jobs.length > 0 ? jobs.map(job => {`/job/${job.id}` === location.pathname && setJobId(job.id)}) : setLoading("Loading...") }, [])
 
   const JobStyled = styled.div`
   width: 100%;
@@ -135,6 +127,14 @@ const Job: React.FC = () => {
   text-decoration: none;
 `
 
+const Job: React.FC = () => {
+
+  const location = useLocation()
+  const [jobId, setJobId] = useState<number>(-1)
+  const [loading , setLoading] = useState<string>("")
+  const [jobApplied] = useState(false)
+
+  useEffect(() => {jobs.length > 0 ? jobs.map(job => {`/job/${job.id}` === location.pathname && setJobId(job.id)}) : setLoading("Loading...") }, [])
 
   return (
    <JobStyled>

@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-const NotFound = () => {
 	const Container = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -12,6 +11,9 @@ const NotFound = () => {
 	width: 50%;
 	height: 50%;
 	`
+
+const NotFound = () => {
+
 	return (
 		<Container>
 			<h1>Page not found</h1>

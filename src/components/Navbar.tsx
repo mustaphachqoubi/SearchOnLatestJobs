@@ -6,36 +6,8 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import React from "react"
 
-const Navbar: React.FC = () => {
 
-  const [menuNavDisplay, setMenuNavDisplay] = useState("none")
-
-  const handleMenuClick = () => menuNavDisplay === "none" ? setMenuNavDisplay("flex") : setMenuNavDisplay("none")
-
-
-  type MenuListDataTypes = {
-    id: number,
-    to: string,
-    icon: any,
-    text: string
-  }
-
-  const MenuListData: MenuListDataTypes[]= [
-  {
-    id: 1,
-    to: "/newjobs",
-    icon: <CgTrack />,
-    text: "New Jobs"
-  },
-  {
-    id: 2,
-    to: "/appliedjobs",
-    icon: <TbSitemap />,
-    text: "Applied Jobs"
-  }
-  ]
-
-  const Navbar = styled.div`
+  const NavbarContainer = styled.div`
   border-bottom: 2px solid white;
   display: flex;
   justify-content: between;
@@ -106,8 +78,7 @@ const Navbar: React.FC = () => {
   font-size: .7rem;
   font-weight: bold;
   cursor: pointer;
-  ${
-  menuNavDisplay === "flex" ? `background: white;color: #242424` : `background: #242424; color: white;
+  ${(props) => props.menuNavDisplay === "flex" ? `background: white;color: #242424` : `background: #242424; color: white;
   &:hover{
     background: white;
     color: #242424;
@@ -143,7 +114,7 @@ const Navbar: React.FC = () => {
   border-bottom-right-radius: .3rem;
   border-top: none;
   @media (max-width: 400px){
-    display: ${menuNavDisplay}
+    display: ${(props) => props.menuNavDisplay}
   }
 `
 
@@ -167,8 +138,38 @@ const Navbar: React.FC = () => {
   }
 `
 
+const Navbar: React.FC = () => {
+
+  const [menuNavDisplay, setMenuNavDisplay] = useState("none")
+  
+  const handleMenuClick = () => menuNavDisplay === "none" ? setMenuNavDisplay("flex") : setMenuNavDisplay("none")
+
+  type MenuListDataTypes = {
+    id: number,
+    to: string,
+    icon: any,
+    text: string
+  }
+
+  const MenuListData: MenuListDataTypes[]= [
+  {
+    id: 1,
+    to: "/newjobs",
+    icon: <CgTrack />,
+    text: "New Jobs"
+  },
+  {
+    id: 2,
+    to: "/appliedjobs",
+    icon: <TbSitemap />,
+    text: "Applied Jobs"
+  }
+  ]
+
+
+
   return (
-    <Navbar>
+    <NavbarContainer>
 
         <Logo to="/"> 
         <Span>S</Span>
@@ -179,14 +180,14 @@ const Navbar: React.FC = () => {
 
       <NavList>
         { MenuListData.map( (menuList) => ( <List key={menuList.id} onClick={handleMenuClick} to={menuList.to}><Icon>{menuList.icon} </Icon> {menuList.text} </List> ) ) }
-        <Menu onClick={handleMenuClick}><Icon><HiMenuAlt1 /></Icon></Menu>
+        <Menu menuNavDisplay={menuNavDisplay} onClick={handleMenuClick}><Icon><HiMenuAlt1 /></Icon></Menu>
       </NavList>
 
-      <MenuNav>
+      <MenuNav menuNavDisplay={menuNavDisplay}>
         { MenuListData.map( (menuList) => ( <MenuList key={menuList.id} onClick={handleMenuClick} to={menuList.to}><Icon>{menuList.icon} </Icon> {menuList.text} </MenuList> ) ) }
       </MenuNav>
 
-    </Navbar>
+    </NavbarContainer>
   )
 }
 

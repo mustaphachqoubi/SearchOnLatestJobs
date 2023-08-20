@@ -1,0 +1,51 @@
+
+{
+  "name": "applied to",
+  "children": [
+    {
+      "name": "Youtube",
+      "children": [
+        {
+          "name": "contacted",
+          "children": [
+            { "name": "interview", "children": [{ "name": "accept", "value": "end"}, { "name": "reject", "children": [{}] }] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Facebook",
+      "children": [
+        {
+          "name": "ghosted",
+          "children": [
+            { "name": "interview", "children": [{ "name": "accept" }, { "name": "reject" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Google",
+      "children": [
+        {
+          "name": "contacted",
+          "children": [
+            { "name": "interview", "children": [{ "name": "accept" }, { "name": "reject" }] }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Amazon",
+      "children": [
+        {
+          "name": "ghosted",
+          "children": [
+            { "name": "interview", "children": [{ "name": "accept" }, { "name": "reject" }] }
+          ]
+        }
+      ]
+    }
+  ]
+}
+

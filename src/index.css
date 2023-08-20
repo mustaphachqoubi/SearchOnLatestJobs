@@ -34,3 +34,7 @@ div{
   background-color: #242424;
   opacity: .6
 }
+
+.tt{
+  word-wrap: break-word;
+}

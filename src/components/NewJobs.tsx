@@ -3,8 +3,6 @@ import { styled } from "styled-components"
 import { Link } from "react-router-dom"
 import { jobs } from "../../public/jobs"
 
-const NewJobs: React.FC = () => {
-
   const Jobs = styled.div`
   display: flex;
   justify-content: center;
@@ -84,6 +82,8 @@ const NewJobs: React.FC = () => {
   font-size: .7rem;
   font-weight: bold;
 `
+
+const NewJobs: React.FC = () => {
   
   return (
     <Jobs>
