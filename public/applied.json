@@ -4,11 +4,12 @@
   "children": [
     {
       "name": "Youtube",
+      "date": "25-8-22",
       "children": [
         {
           "name": "contacted",
           "children": [
-            { "name": "interview", "children": [{ "name": "accept", "value": "end"}, { "name": "reject", "children": [{}] }] }
+            { "name": "interview", "children": [ { "name": "reject" }] }
           ]
         }
       ]
@@ -17,10 +18,8 @@
       "name": "Facebook",
       "children": [
         {
-          "name": "ghosted",
-          "children": [
-            { "name": "interview", "children": [{ "name": "accept" }, { "name": "reject" }] }
-          ]
+          "name": "ghosted"
+
         }
       ]
     },

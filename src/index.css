@@ -38,3 +38,7 @@ div{
 .tt{
   word-wrap: break-word;
 }
+
+#my-tooltip{
+  text-align: center
+}

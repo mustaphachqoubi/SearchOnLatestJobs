@@ -1,7 +1,8 @@
 import * as d3 from 'd3'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useSelector } from 'react-redux'
+import { Tooltip } from 'react-tooltip'
 
   const TreeDiv = styled.div`
   width: 100%;
@@ -13,30 +14,19 @@ import { useSelector } from 'react-redux'
 
 const Tree = () => {
 
-  /*
-       svg.selectAll('text').data(root.descendants())
-        .enter().append('text')
-        .attr('stroke-width', '2px')
-        .attr('x', d => d.y)
-        .attr('y', d => d.x)
-        .attr('dy', '0.32em')
-        .attr('class', 'text')
-        .text(d => d.data.name)
-        */
-
-  const { selectedCompanyName } = useSelector(state => state.selectedCompanyName)
+  const { selectedCompanyName } = useSelector((state: any) => state.selectedCompanyName)
 
   useEffect(() => {
     const width = document.body.clientWidth
-    const height = document.body.clientHeight
-
-    const fixedWidth = 800;
     const fixedHeight = 600
+    const margin  = { top: 0, right: 100, bottom: 0, left:0 }
+    const innerWidth = width - margin.left - margin.right
+    const innerHeight = fixedHeight - margin.top - margin.bottom
 
      d3.select(treeRef.current).selectAll('*').remove();
 
     const tree = d3.tree()
-    .size([fixedHeight, width])
+    .size([innerHeight, innerWidth])
 
     const svg = d3.select(treeRef.current)
     .append('svg')
@@ -44,21 +34,31 @@ const Tree = () => {
     .attr('height', fixedHeight)
     .attr('fill', 'none')
     .attr('stroke', 'white')
+    .append('g')
 
+    const g = svg.append('g')
+    .attr('transform', `translate(${margin.left}, ${margin.top})`)
+
+    const handleZoom = (e: any) => {
+      g.attr('transform', e.transform)
+    }
+
+   svg.call(d3.zoom().on("zoom", handleZoom))
+  
     d3.json('../../public/applied.json')
     .then(data => {
-        const rootNode = data.children.find(child => child.name === selectedCompanyName);
+        const rootNode = data.children.find((child: any) => child.name === selectedCompanyName);
         const root = d3.hierarchy(selectedCompanyName === "All" ? data : rootNode)
         const links = tree(root).links()
         const linkPathGenerator = d3.linkHorizontal()
         .x(d => d.y)
         .y(d => d.x)
 
-        svg.selectAll('path').data(links)
+        g.selectAll('path').data(links)
         .enter().append('path')
-        .attr('d', linkPathGenerator )
+        .attr('d', linkPathGenerator)
 
-  svg.selectAll('foreignObject')
+  g.selectAll('foreignObject')
   .data(root.descendants())
   .enter().append('foreignObject')
   .attr('x', d => d.y)
@@ -76,8 +76,17 @@ const Tree = () => {
   .style('border-radius', '.3rem')
   .style('padding', '.3rem')
   .style('font-weight', 'bold')
-  .text(d => d.data.name);
-
+  .style('cursor', 'pointer')
+  .text(d => d.data.name)
+  .attr('data-tooltip-html',
+            d => d.data.name !== "applied to" ? 
+              d.data.name + '</br> at </br>' + d.data.date : 
+              (d.data.children.length + ` companies </br> ` )
+    )
+  .attr('data-tooltip-id', "my-tooltip")
+  .attr('data-tooltip-place',"top")
+  .attr('data-tooltip-variant',"light")
+        
   })
 
   }, [selectedCompanyName])
@@ -86,6 +95,7 @@ const Tree = () => {
 
   return (
     <Container>
+      <Tooltip id="my-tooltip" />
       <TreeDiv ref={treeRef}></TreeDiv>
     </Container>
   )
