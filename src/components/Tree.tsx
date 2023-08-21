@@ -46,13 +46,51 @@ const Tree = () => {
    svg.call(d3.zoom().on("zoom", handleZoom))
   
     d3.json('../../public/applied.json')
-    .then(data => {
+    .then((data: any) => {
+
+        function countStatuses(node: any) {
+  const statusCounts = {
+    rejected: 0,
+    accepted: 0,
+    ghosted: 0,
+    interviewed: 0,
+  };
+
+  if (node.children) {
+    node.children.forEach((child: any) => {
+      const childStatusCounts = countStatuses(child);
+      for (const status in childStatusCounts) {
+        statusCounts[status] += childStatusCounts[status];
+      }
+    });
+  }
+
+  switch (node.name) {
+    case 'reject':
+      statusCounts.rejected++;
+      break;
+    case 'accept':
+      statusCounts.accepted++;
+      break;
+    case 'ghosted':
+      statusCounts.ghosted++;
+      break;
+    case 'interview':
+      statusCounts.interviewed++;
+      break;
+  }
+
+  return statusCounts;
+}
+
+const totalCounts = countStatuses(data);
+
         const rootNode = data.children.find((child: any) => child.name === selectedCompanyName);
         const root = d3.hierarchy(selectedCompanyName === "All" ? data : rootNode)
         const links = tree(root).links()
         const linkPathGenerator = d3.linkHorizontal()
-        .x(d => d.y)
-        .y(d => d.x)
+        .x((d: any) => d.y)
+        .y((d: any) => d.x)
 
         g.selectAll('path').data(links)
         .enter().append('path')
@@ -61,8 +99,8 @@ const Tree = () => {
   g.selectAll('foreignObject')
   .data(root.descendants())
   .enter().append('foreignObject')
-  .attr('x', d => d.y)
-  .attr('y', d => d.x - 15)
+  .attr('x', (d: any) => d.y)
+  .attr('y', (d: any) => d.x - 15)
   .attr('width', '6rem')
   .attr('height', '100%')
   .append('xhtml:div')
@@ -81,12 +119,18 @@ const Tree = () => {
   .attr('data-tooltip-html',
             d => d.data.name !== "applied to" ? 
               d.data.name + '</br> at </br>' + d.data.date : 
-              (d.data.children.length + ` companies </br> ` )
+              (`<div class="companiesNumberContainer"> ${d.data.children.length} companies </div> </br>
+              <div class="companyStatusContainer"><div class="number">${totalCounts.rejected}</div> <div class="companyStatus">rejected</div></div> </br>
+              <div class="companyStatusContainer"><div class="number">${totalCounts.accepted}</div> <div class="companyStatus">accepted</div></div> </br>
+              <div class="companyStatusContainer"><div class="number">${totalCounts.ghosted}</div> <div class="companyStatus">ghosted</div></div> </br>
+              <div class="companyStatusContainer"><div class="number">${totalCounts.interviewed}</div> <div class="companyStatus">interviewed</div></div>
+    ` )
     )
   .attr('data-tooltip-id', "my-tooltip")
   .attr('data-tooltip-place',"top")
   .attr('data-tooltip-variant',"light")
-        
+
+
   })
 
   }, [selectedCompanyName])

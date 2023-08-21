@@ -42,3 +42,40 @@ div{
 #my-tooltip{
   text-align: center
 }
+
+.companyStatus{
+  color: #8ce4a6;
+  background-color: #28322d;
+  padding: .2rem 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .3rem
+}
+
+.companyStatusContainer{
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+}
+
+.companiesNumberContainer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+}
+
+.number{
+color: #8ce4a6;
+  background-color: #28322d;
+  padding: .2rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: .3rem
+}

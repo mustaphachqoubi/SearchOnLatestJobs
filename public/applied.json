@@ -8,39 +8,45 @@
       "children": [
         {
           "name": "contacted",
+          "date": "25-8-22",
           "children": [
-            { "name": "interview", "children": [ { "name": "reject" }] }
+            { "name": "interview", "date": "25-8-22", "children": [ { "name": "reject", "date": "25-8-22" }] }
           ]
         }
       ]
     },
     {
       "name": "Facebook",
+      "date": "25-8-22",
       "children": [
         {
-          "name": "ghosted"
-
+          "name": "ghosted",
+          "date": "25-8-22"
         }
       ]
     },
     {
       "name": "Google",
+      "date": "25-8-22",
       "children": [
         {
           "name": "contacted",
+          "date": "25-8-22",
           "children": [
-            { "name": "interview", "children": [{ "name": "accept" }, { "name": "reject" }] }
+            { "name": "interview", "date": "25-8-22", "children": [{ "name": "accept", "date": "25-8-22"}] }
           ]
         }
       ]
     },
     {
       "name": "Amazon",
+      "date": "25-8-22",
       "children": [
         {
           "name": "ghosted",
+          "date": "25-8-22",
           "children": [
-            { "name": "interview", "children": [{ "name": "accept" }, { "name": "reject" }] }
+            { "name": "interview", "date": "25-8-22", "children": [{ "name": "accept", "date": "25-8-22" }] }
           ]
         }
       ]
