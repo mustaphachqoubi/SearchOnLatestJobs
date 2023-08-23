@@ -4,7 +4,6 @@ import { jobs } from "../../public/jobs"
 import React, { useEffect, useState } from "react"
 import { styled } from "styled-components"
 
-
   const JobStyled = styled.div`
   width: 100%;
   display: flex;
@@ -133,8 +132,18 @@ const Job: React.FC = () => {
   const [jobId, setJobId] = useState<number>(-1)
   const [loading , setLoading] = useState<string>("")
   const [jobApplied] = useState(false)
+  const [selectedCompany, setSelectedCompany] = useState(null)
 
   useEffect(() => {jobs.length > 0 ? jobs.map(job => {`/job/${job.id}` === location.pathname && setJobId(job.id)}) : setLoading("Loading...") }, [])
+
+  const handleSelectedCompany = () => {
+    setSelectedCompany(location.pathname)
+  }
+
+  useEffect(() => {
+        jobs.map(job => job.id === jobId && setSelectedCompany(job.company))
+    console.log(selectedCompany)
+  })
 
   return (
    <JobStyled>
@@ -157,7 +166,7 @@ const Job: React.FC = () => {
      {
         jobApplied === false ? (
         <ApplyToJob>
-        <ApplyAndTrackTheProcess to="/">
+        <ApplyAndTrackTheProcess to={`/appliedjobs`} onClick={handleSelectedCompany}>
           Apply & track
         </ApplyAndTrackTheProcess>
 
