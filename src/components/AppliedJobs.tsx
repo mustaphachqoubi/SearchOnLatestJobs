@@ -4,6 +4,9 @@ import { useEffect, useState } from "react"
 import Tree from './Tree'
 import { setSelectedCompanyName } from "../redux/selectedCompanyName"
 import { useDispatch } from "react-redux"
+import { jobs } from "../../public/jobs"
+import { Link } from "react-router-dom"
+import { useLocation } from "react-router-dom"
 
 const AppliedJobsContainer = styled.div`
 overflow: hidden;
@@ -28,13 +31,14 @@ overflow: hidden;
 }
 `
 
-  const Company = styled.div`
+  const Company = styled(Link)`
   border: 2px solid white;
   border-radius: .3rem;
   padding: .3rem 1rem;
   font-size: .8rem;
   font-weight: bold;
   cursor: pointer;
+  text-decoration: none;
 `
 
   const TreeContainer = styled.div`
@@ -42,25 +46,31 @@ overflow: hidden;
 
 const AppliedJobs: React.FC = () => {
   const dispatch = useDispatch()
+  const location = useLocation()
 
-  const [selectedCompany, setSelectedCompany] = useState(1)
-
-  const Companies = [{id: 1, name: "All"}, {id: 2, name: "Youtube"}, {id: 3, name: "Facebook"}]
+  const [selectedCompany, setSelectedCompany] = useState(-1)
 
   const handleSelectedCompany = (id: number) => {
     setSelectedCompany(id)  
+    dispatch(setSelectedCompanyName("All"))
   }
 
   useEffect(() => {
-    Companies.map(c => c.id === selectedCompany && dispatch(setSelectedCompanyName(c.name)))
+    jobs.map(job => job.id === selectedCompany && dispatch(setSelectedCompanyName(job.company))) 
   })
-
 
   return (
     <AppliedJobsContainer>
       <SelectCompany>
-        {Companies.map(company => <Company className={selectedCompany === company.id ? "selectedCompany" : "nonSelectedCompany"} 
-          key={company.id} onClick={() => handleSelectedCompany(company.id)}>{company.name}</Company>)}
+        <Company 
+          to={`/appliedjobs/All`} 
+          className={selectedCompany === -1 && location.pathname === `/appliedjobs/All` ? "selectedCompany" : "nonSelectedCompany"} 
+          onClick={() => handleSelectedCompany(-1)}>All</Company>
+
+        {jobs.map(job => <Company 
+          to={`/appliedjobs/${job.company}`} 
+          className={selectedCompany === job.id || location.pathname === `/appliedjobs/${job.company}` ? "selectedCompany" : "nonSelectedCompany"} 
+          key={job.id} onClick={() => handleSelectedCompany(job.id)}>{job.company}</Company>)}
       </SelectCompany>
 
       <TreeContainer>

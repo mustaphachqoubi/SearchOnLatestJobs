@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom"
 import { jobs } from "../../public/jobs"
 import React, { useEffect, useState } from "react"
 import { styled } from "styled-components"
+import { setCheckJobProcessFor } from "../redux/checkJobProcessFor"
+import { useDispatch, useSelector } from "react-redux"
 
   const JobStyled = styled.div`
   width: 100%;
@@ -131,19 +133,17 @@ const Job: React.FC = () => {
   const location = useLocation()
   const [jobId, setJobId] = useState<number>(-1)
   const [loading , setLoading] = useState<string>("")
-  const [jobApplied] = useState(false)
-  const [selectedCompany, setSelectedCompany] = useState(null)
+  const [jobApplied] = useState(true)
+  const { checkJobProcessFor } = useSelector((state: any) => state.checkJobProcessFor)
+  const [routeTo, setRouteTo] = useState("")
+
+  const dispatch = useDispatch()
 
   useEffect(() => {jobs.length > 0 ? jobs.map(job => {`/job/${job.id}` === location.pathname && setJobId(job.id)}) : setLoading("Loading...") }, [])
 
-  const handleSelectedCompany = () => {
-    setSelectedCompany(location.pathname)
+  const handleJobProcess = () => {
+    jobs?.map(job => job.id === jobId && dispatch(setCheckJobProcessFor(job.company)))
   }
-
-  useEffect(() => {
-        jobs.map(job => job.id === jobId && setSelectedCompany(job.company))
-    console.log(selectedCompany)
-  })
 
   return (
    <JobStyled>
@@ -159,14 +159,14 @@ const Job: React.FC = () => {
 
       <Hr />
       <JobDescription>
-        {jobs?.map(job => job.id === jobId && job.description)}
+        {jobs.map(job => job.id === jobId && job.description)}
       </JobDescription>
       <Hr />
 
      {
         jobApplied === false ? (
         <ApplyToJob>
-        <ApplyAndTrackTheProcess to={`/appliedjobs`} onClick={handleSelectedCompany}>
+        <ApplyAndTrackTheProcess to={`/appliedjobs`}>
           Apply & track
         </ApplyAndTrackTheProcess>
 
@@ -176,7 +176,7 @@ const Job: React.FC = () => {
       </ApplyToJob>
         ) : (
         <CheckContainer>
-        <CheckJobIn to="/appliedjobs">Check job process</CheckJobIn>
+        <CheckJobIn onClick={handleJobProcess} to={`/appliedjobs/${jobs.find(job => job.id === jobId)?.company || ''}`}>Check job process</CheckJobIn>
         <CheckJobIn to="https://google.com" target="_blank">Check job on Linkedin</CheckJobIn>
       </CheckContainer>
         )

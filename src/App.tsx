@@ -42,9 +42,9 @@ export const App: React.FC = () => {
         <Routes>
           <Route index path="/" element={<Suspense fallback={<Loading />}><Home /></Suspense>}/>
           <Route path="/login" element={<Suspense fallback={<Loading />}><Login /></Suspense>}/>
-          <Route path="/Signup" element={<Suspense fallback={<Loading />}><SignUp /></Suspense>}/>
+          <Route path="/signup" element={<Suspense fallback={<Loading />}><SignUp /></Suspense>}/>
           <Route path="/newjobs" element={<Suspense fallback={<Loading />}><NewJobs /></Suspense>}/>
-          <Route path="/Appliedjobs" element={<Suspense fallback={<Loading />}><AppliedJobs /></Suspense>}/>
+          <Route path="/appliedjobs/:companyname" element={<Suspense fallback={<Loading />}><AppliedJobs /></Suspense>}/>
           <Route path="/job/:id" element={<Suspense fallback={<Loading />}><Job /></Suspense>}/>
           <Route path="*" element={<Suspense fallback={<Loading />}><Navigate to="/404" /></Suspense>}/>
           <Route path="/404" element={<Suspense fallback={<Loading />}><NotFound /></Suspense>}/>

@@ -3,6 +3,7 @@ import { useRef, useEffect } from 'react'
 import { styled } from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Tooltip } from 'react-tooltip'
+import { useLocation } from 'react-router-dom'
 
   const TreeDiv = styled.div`
   width: 100%;
@@ -13,6 +14,8 @@ import { Tooltip } from 'react-tooltip'
 `
 
 const Tree = () => {
+
+  const location = useLocation()
 
   const { selectedCompanyName } = useSelector((state: any) => state.selectedCompanyName)
 
@@ -85,8 +88,9 @@ const Tree = () => {
 
 const totalCounts = countStatuses(data);
 
-        const rootNode = data.children.find((child: any) => child.name === selectedCompanyName);
-        const root = d3.hierarchy(selectedCompanyName === "All" ? data : rootNode)
+
+        const rootNode = data.children.find((child: any) => `/appliedjobs/${child.name}` === location.pathname);
+        const root = d3.hierarchy(location.pathname === `/appliedjobs/All` ? data : rootNode) 
         const links = tree(root).links()
         const linkPathGenerator = d3.linkHorizontal()
         .x((d: any) => d.y)
@@ -133,7 +137,7 @@ const totalCounts = countStatuses(data);
 
   })
 
-  }, [selectedCompanyName])
+  }, [selectedCompanyName, location])
 
   const treeRef = useRef(null)
 

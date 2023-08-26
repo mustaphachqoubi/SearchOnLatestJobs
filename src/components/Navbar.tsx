@@ -160,7 +160,7 @@ const Navbar: React.FC = () => {
   },
   {
     id: 2,
-    to: "/appliedjobs",
+    to: "/appliedjobs/All",
     icon: <TbSitemap />,
     text: "Applied Jobs"
   }
