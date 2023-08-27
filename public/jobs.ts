@@ -73,23 +73,5 @@ export const jobs: jobsTypes[] = [
   company: "Google",
   link: "/job:4",
   description: "description test test test",
-  },
-  {
-  id: 5,
-  title: "Frontend developer",
-  location: "Rabat, agdal, morocco", 
-  posted: "23-08-2023",
-  company: "Samsung",
-  link: "/job:5",
-  description: "description test test test",
-  },
-  {
-  id: 6,
-  title: "Frontend developer",
-  location: "Rabat, agdal, morocco", 
-  posted: "23-08-2023",
-  company: "Pepsi",
-  link: "/job:6",
-  description: "description test test test",
-  },
+  }
 ]

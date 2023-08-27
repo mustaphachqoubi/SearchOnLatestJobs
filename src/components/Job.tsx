@@ -4,7 +4,7 @@ import { jobs } from "../../public/jobs"
 import React, { useEffect, useState } from "react"
 import { styled } from "styled-components"
 import { setCheckJobProcessFor } from "../redux/checkJobProcessFor"
-import { useDispatch, useSelector } from "react-redux"
+import { useDispatch } from "react-redux"
 
   const JobStyled = styled.div`
   width: 100%;
@@ -134,8 +134,6 @@ const Job: React.FC = () => {
   const [jobId, setJobId] = useState<number>(-1)
   const [loading , setLoading] = useState<string>("")
   const [jobApplied] = useState(true)
-  const { checkJobProcessFor } = useSelector((state: any) => state.checkJobProcessFor)
-  const [routeTo, setRouteTo] = useState("")
 
   const dispatch = useDispatch()
 

@@ -88,7 +88,6 @@ const Tree = () => {
 
 const totalCounts = countStatuses(data);
 
-
         const rootNode = data.children.find((child: any) => `/appliedjobs/${child.name}` === location.pathname);
         const root = d3.hierarchy(location.pathname === `/appliedjobs/All` ? data : rootNode) 
         const links = tree(root).links()
@@ -107,7 +106,8 @@ const totalCounts = countStatuses(data);
   .attr('y', (d: any) => d.x - 15)
   .attr('width', '6rem')
   .attr('height', '100%')
-  .append('xhtml:div')
+  .append('xhtml:a')
+  .attr("href", "/job/3")
   .style('text-align', 'center')
   .style('display', 'flex')
   .style('align-items', 'center')
