@@ -4,6 +4,7 @@ import { styled } from 'styled-components'
 import { useSelector } from 'react-redux'
 import { Tooltip } from 'react-tooltip'
 import { useLocation } from 'react-router-dom'
+import { jobs } from '../../public/jobs'
 
   const TreeDiv = styled.div`
   width: 100%;
@@ -87,6 +88,9 @@ const Tree = () => {
 }
 
 const totalCounts = countStatuses(data);
+        const node = data.children.map((child: any) => child);
+
+        const comps = jobs.map(job => job.company)
 
         const rootNode = data.children.find((child: any) => `/appliedjobs/${child.name}` === location.pathname);
         const root = d3.hierarchy(location.pathname === `/appliedjobs/All` ? data : rootNode) 
@@ -99,20 +103,34 @@ const totalCounts = countStatuses(data);
         .enter().append('path')
         .attr('d', linkPathGenerator)
 
-  g.selectAll('foreignObject')
+g.selectAll('foreignObject')
   .data(root.descendants())
   .enter().append('foreignObject')
   .attr('x', (d: any) => d.y)
   .attr('y', (d: any) => d.x - 15)
   .attr('width', '6rem')
   .attr('height', '100%')
-  .append('xhtml:a')
-  .attr("href", "/job/3")
+  .append(`xhtml:div`)
   .style('text-align', 'center')
   .style('display', 'flex')
   .style('align-items', 'center')
   .style('justify-content', 'center')
   .style('background-color', '#242424')
+  .on("mouseover", (e) => {
+      if(comps.filter(c => c === e.target.innerHTML).join() === e.target.innerHTML ){
+        d3.select(e.target)
+                .style('background-color', 'white')
+                .style('color', '#242424')
+                .style('border', '2px solid white')
+      }
+  })
+  .on("mouseout", (e) => {
+      if(comps.filter(c => c === e.target.innerHTML).join() === e.target.innerHTML ){
+        d3.select(e.target)
+                .style('background-color', '#242424')
+                .style('color', 'white')
+      }
+  })
   .style('color', 'white')
   .style('border', '2px solid white')
   .style('border-radius', '.3rem')
@@ -135,7 +153,7 @@ const totalCounts = countStatuses(data);
   .attr('data-tooltip-variant',"light")
 
 
-  })
+    })
 
   }, [selectedCompanyName, location])
 
