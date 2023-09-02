@@ -88,7 +88,6 @@ const Tree = () => {
 }
 
 const totalCounts = countStatuses(data);
-        const node = data.children.map((child: any) => child);
 
         const comps = jobs.map(job => job.company)
 
@@ -103,6 +102,7 @@ const totalCounts = countStatuses(data);
         .enter().append('path')
         .attr('d', linkPathGenerator)
 
+
 g.selectAll('foreignObject')
   .data(root.descendants())
   .enter().append('foreignObject')
@@ -110,47 +110,71 @@ g.selectAll('foreignObject')
   .attr('y', (d: any) => d.x - 15)
   .attr('width', '6rem')
   .attr('height', '100%')
-  .append(`xhtml:div`)
-  .style('text-align', 'center')
-  .style('display', 'flex')
-  .style('align-items', 'center')
-  .style('justify-content', 'center')
-  .style('background-color', '#242424')
-  .on("mouseover", (e) => {
-      if(comps.filter(c => c === e.target.innerHTML).join() === e.target.innerHTML ){
-        d3.select(e.target)
-                .style('background-color', 'white')
-                .style('color', '#242424')
-                .style('border', '2px solid white')
-      }
+  .each(function(d) {
+    if (comps.includes(d.data.name)) {
+      d3.select(this)
+        .append('xhtml:a')
+        .attr('href', `/company/${d.data.name}`)
+        .style('text-decoration', 'none')
+        .style('color', 'white')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('justify-content', 'center')
+        .style('background-color', '#242424')
+        .style('border', '2px solid white')
+        .style('border-radius', '.3rem')
+        .style('padding', '.3rem')
+        .style('font-weight', 'bold')
+        .style('cursor', 'pointer')
+        .text((d: any) => d.data.name)
+                .on("mouseover", (e) => {
+    if (comps.includes(e.target.innerHTML)) {
+      d3.select(e.target)
+        .style('background-color', 'white')
+        .style('color', '#242424')
+        .style('border', '2px solid white');
+    }
   })
   .on("mouseout", (e) => {
-      if(comps.filter(c => c === e.target.innerHTML).join() === e.target.innerHTML ){
-        d3.select(e.target)
-                .style('background-color', '#242424')
-                .style('color', 'white')
-      }
+    if (comps.includes(e.target.innerHTML)) {
+      d3.select(e.target)
+        .style('background-color', '#242424')
+        .style('color', 'white');
+    }
   })
-  .style('color', 'white')
-  .style('border', '2px solid white')
-  .style('border-radius', '.3rem')
-  .style('padding', '.3rem')
-  .style('font-weight', 'bold')
-  .style('cursor', 'pointer')
-  .text(d => d.data.name)
-  .attr('data-tooltip-html',
-            d => d.data.name !== "applied to" ? 
-              d.data.name + '</br> at </br>' + d.data.date : 
-              (`<div class="companiesNumberContainer"> ${d.data.children.length} companies </div> </br>
+    } else {
+      d3.select(this)
+        .append('xhtml:div')
+        .style('text-align', 'center')
+        .style('display', 'flex')
+        .style('align-items', 'center')
+        .style('justify-content', 'center')
+        .style('background-color', '#242424')
+        .style('color', 'white')
+        .style('border', '2px solid white')
+        .style('border-radius', '.3rem')
+        .style('padding', '.3rem')
+        .style('font-weight', 'bold')
+        .style('cursor', 'pointer')
+        .text((d: any) => d.data.name);
+    }
+  })
+
+  .attr('data-tooltip-html', d => {
+    if (d.data.name !== "applied to") {
+      return d.data.name + '</br> at </br>' + d.data.date;
+    } else {
+      return `<div class="companiesNumberContainer"> ${d.data.children.length} companies </div> </br>
               <div class="companyStatusContainer"><div class="number">${totalCounts.rejected}</div> <div class="companyStatus">rejected</div></div> </br>
               <div class="companyStatusContainer"><div class="number">${totalCounts.accepted}</div> <div class="companyStatus">accepted</div></div> </br>
               <div class="companyStatusContainer"><div class="number">${totalCounts.ghosted}</div> <div class="companyStatus">ghosted</div></div> </br>
-              <div class="companyStatusContainer"><div class="number">${totalCounts.interviewed}</div> <div class="companyStatus">interviewed</div></div>
-    ` )
-    )
+              <div class="companyStatusContainer"><div class="number">${totalCounts.interviewed}</div> <div class="companyStatus">interviewed</div></div>`;
+    }
+  })
   .attr('data-tooltip-id', "my-tooltip")
-  .attr('data-tooltip-place',"top")
-  .attr('data-tooltip-variant',"light")
+  .attr('data-tooltip-place', "top")
+  .attr('data-tooltip-variant', "light");
+
 
 
     })

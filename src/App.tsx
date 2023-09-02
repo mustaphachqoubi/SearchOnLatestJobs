@@ -11,6 +11,7 @@ const NotFound = lazy(() => import('./components/NotFound'));
 const Login = lazy(() => import('./components/Register/Login/Login'));
 const SignUp = lazy(() => import('./components/Register/Signup/Signup'));
 const Home = lazy(() => import('./components/Home'));
+const Company = lazy(() => import('./components/Company'));
 
   const LoadingStyled = styled.h1`
   display: flex;
@@ -46,6 +47,7 @@ export const App: React.FC = () => {
           <Route path="/newjobs" element={<Suspense fallback={<Loading />}><NewJobs /></Suspense>}/>
           <Route path="/appliedjobs/:companyname" element={<Suspense fallback={<Loading />}><AppliedJobs /></Suspense>}/>
           <Route path="/job/:id" element={<Suspense fallback={<Loading />}><Job /></Suspense>}/>
+          <Route path="/company/:name" element={<Suspense fallback={<Loading />}><Company/></Suspense>}/>
           <Route path="*" element={<Suspense fallback={<Loading />}><Navigate to="/404" /></Suspense>}/>
           <Route path="/404" element={<Suspense fallback={<Loading />}><NotFound /></Suspense>}/>
         </Routes>
