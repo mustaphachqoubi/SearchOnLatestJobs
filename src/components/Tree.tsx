@@ -109,7 +109,7 @@ g.selectAll('foreignObject')
   .attr('x', (d: any) => d.y)
   .attr('y', (d: any) => d.x - 15)
   .attr('width', '6rem')
-  .attr('height', '100%')
+  .attr('height', '2rem')
   .each(function(d) {
     if (comps.includes(d.data.name)) {
       d3.select(this)
