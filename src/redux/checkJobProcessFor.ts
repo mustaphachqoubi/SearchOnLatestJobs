@@ -3,14 +3,14 @@ import { createSlice } from "@reduxjs/toolkit";
 const checkJobProcessFor = createSlice({
   name: "checkJobProcessFor",
   initialState: {
-    checkJobProcessFor: "All"
+    checkJobProcessFor: "All",
   },
   reducers: {
     setCheckJobProcessFor: (state, action) => {
-      state.checkJobProcessFor = action.payload
-    }
-  }
-})
+      state.checkJobProcessFor = action.payload;
+    },
+  },
+});
 
-export const { setCheckJobProcessFor } = checkJobProcessFor.actions
-export default checkJobProcessFor
+export const { setCheckJobProcessFor } = checkJobProcessFor.actions;
+export default checkJobProcessFor;

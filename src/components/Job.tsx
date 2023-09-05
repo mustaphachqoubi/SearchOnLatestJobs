@@ -1,61 +1,61 @@
-import WithStyle from "./WithStyle"
-import { Link, useLocation } from "react-router-dom"
-import { jobs } from "../../public/jobs"
-import React, { useEffect, useState } from "react"
-import { styled } from "styled-components"
-import { setCheckJobProcessFor } from "../redux/checkJobProcessFor"
-import { useDispatch } from "react-redux"
+import WithStyle from "./WithStyle";
+import { Link, useLocation } from "react-router-dom";
+import { jobs } from "../../public/jobs";
+import React, { useEffect, useState } from "react";
+import { styled } from "styled-components";
+import { setCheckJobProcessFor } from "../redux/checkJobProcessFor";
+import { useDispatch } from "react-redux";
 
-  const JobStyled = styled.div`
+const JobStyled = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: bold;
   text-align: center;
   padding: 1rem 0rem 1rem 0rem;
-`
+`;
 
-  const JobTag = styled.div`
+const JobTag = styled.div`
   color: #8ce4a6;
   background-color: #28322d;
-  padding: .2rem;
+  padding: 0.2rem;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 10rem;
-  border-radius: .3rem
-`
+  border-radius: 0.3rem;
+`;
 
-  const JobContainer = styled.div`
+const JobContainer = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  gap: .5rem;
+  gap: 0.5rem;
   width: 100%;
-`
+`;
 
-  const JobText = styled.div`
-  font-size: .8rem;
+const JobText = styled.div`
+  font-size: 0.8rem;
   font-weight: normal;
   text-align: start;
   width: 100%;
   display: flex;
   justify-content: start;
-  @media (max-width: 400px){
+  @media (max-width: 400px) {
     text-align: center;
     justify-content: center;
   }
-`
+`;
 
-  const Hr = styled.hr`
+const Hr = styled.hr`
   width: 50%;
   background-color: white;
-`
+`;
 
-  const JobDescription = styled.p`
-  font-size: .8rem;
+const JobDescription = styled.p`
+  font-size: 0.8rem;
   font-weight: bold;
   display: flex;
   flex-wrap: wrap;
@@ -63,126 +63,148 @@ import { useDispatch } from "react-redux"
   word-break: break-all;
   justify-content: center;
   align-items: center;
-  line-height: 1.5rem 
-`
+  line-height: 1.5rem;
+`;
 
-  const CheckContainer = styled.div`
+const CheckContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  @media (max-width: 400px){
-    flex-direction: column
+  @media (max-width: 400px) {
+    flex-direction: column;
   }
-`
+`;
 
-  const CheckJobIn = styled(Link)`
+const CheckJobIn = styled(Link)`
   border: 2px solid white;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   width: 10rem;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: white;
-    color: #242424
+    color: #242424;
   }
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   color: white;
   text-decoration: none;
-`
+`;
 
-  const ApplyToJob = styled.div`
+const ApplyToJob = styled.div`
   display: flex;
-  flex-direction:column;
+  flex-direction: column;
   align-items: center;
-  gap: 1rem
-`
+  gap: 1rem;
+`;
 
-  const ApplyAndTrackTheProcess = styled(Link)`
+const ApplyAndTrackTheProcess = styled(Link)`
   border: 2px solid white;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   width: 10rem;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: white;
-    color: #242424
+    color: #242424;
   }
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   color: white;
   text-decoration: none;
-`
+`;
 
-  const ApplyOnWebsite = styled(Link)`
+const ApplyOnWebsite = styled(Link)`
   border: 2px solid white;
-  padding: .5rem;
+  padding: 0.5rem;
   border-radius: 1rem;
   width: 10rem;
   cursor: pointer;
-  &:hover{
+  &:hover {
     background-color: white;
-    color: #242424
+    color: #242424;
   }
-  transition: all .4s ease;
+  transition: all 0.4s ease;
   color: white;
   text-decoration: none;
-`
+`;
 
 const Job: React.FC = () => {
+  const location = useLocation();
+  const [jobId, setJobId] = useState<number>(-1);
+  const [loading, setLoading] = useState<string>("");
+  const [jobApplied] = useState(true);
 
-  const location = useLocation()
-  const [jobId, setJobId] = useState<number>(-1)
-  const [loading , setLoading] = useState<string>("")
-  const [jobApplied] = useState(true)
+  const dispatch = useDispatch();
 
-  const dispatch = useDispatch()
-
-  useEffect(() => {jobs.length > 0 ? jobs.map(job => {`/job/${job.id}` === location.pathname && setJobId(job.id)}) : setLoading("Loading...") }, [])
+  useEffect(() => {
+    jobs.length > 0
+      ? jobs.map((job) => {
+          `/job/${job.id}` === location.pathname && setJobId(job.id);
+        })
+      : setLoading("Loading...");
+  }, []);
 
   const handleJobProcess = () => {
-    jobs?.map(job => job.id === jobId && dispatch(setCheckJobProcessFor(job.company)))
-  }
+    jobs?.map(
+      (job) => job.id === jobId && dispatch(setCheckJobProcessFor(job.company))
+    );
+  };
 
   return (
-   <JobStyled>
-        {
-          jobs.length > 0 ? jobs.map(job => job.id === jobId && Object.keys(job).map(j => j !== "id" && j !== "link" && j !== "description" && (
-          <JobContainer key={job.id}>
-            <JobTag>{j === "company" ? "" : "Job"} {j}</JobTag>
-            <JobText>{job[j]}</JobText>
-          </JobContainer>
-            )
-          )) : loading
-        }
+    <JobStyled>
+      {jobs.length > 0
+        ? jobs.map(
+            (job) =>
+              job.id === jobId &&
+              Object.keys(job).map(
+                (j) =>
+                  j !== "id" &&
+                  j !== "link" &&
+                  j !== "description" && (
+                    <JobContainer key={job.id}>
+                      <JobTag>
+                        {j === "company" ? "" : "Job"} {j}
+                      </JobTag>
+                      <JobText>{job[j]}</JobText>
+                    </JobContainer>
+                  )
+              )
+          )
+        : loading}
 
       <Hr />
       <JobDescription>
-        {jobs.map(job => job.id === jobId && job.description)}
+        {jobs.map((job) => job.id === jobId && job.description)}
       </JobDescription>
       <Hr />
 
-     {
-        jobApplied === false ? (
+      {jobApplied === false ? (
         <ApplyToJob>
-        <ApplyAndTrackTheProcess to={`/appliedjobs`}>
-          Apply & track
-        </ApplyAndTrackTheProcess>
+          <ApplyAndTrackTheProcess to={`/appliedjobs`}>
+            Apply & track
+          </ApplyAndTrackTheProcess>
 
-        <ApplyOnWebsite to="/">
-          Apply on Indeed
-        </ApplyOnWebsite>
-      </ApplyToJob>
-        ) : (
+          <ApplyOnWebsite to="/">Apply on Indeed</ApplyOnWebsite>
+        </ApplyToJob>
+      ) : (
         <CheckContainer>
-        <CheckJobIn onClick={handleJobProcess} to={`/appliedjobs/${jobs.find(job => job.id === jobId)?.company || ''}`}>Check job process</CheckJobIn>
-        <CheckJobIn to="https://google.com" target="_blank">Check job on Linkedin</CheckJobIn>
-      </CheckContainer>
-        )
-      } 
-    </JobStyled> 
-  )
-}
+          <CheckJobIn
+            onClick={handleJobProcess}
+            to={`/appliedjobs/${
+              jobs.find((job) => job.id === jobId)?.company || ""
+            }`}
+          >
+            Check job process
+          </CheckJobIn>
+          <CheckJobIn to="https://google.com" target="_blank">
+            Check job on Linkedin
+          </CheckJobIn>
+        </CheckContainer>
+      )}
+    </JobStyled>
+  );
+};
 
-const JobWithStyle = WithStyle(Job)
+const JobWithStyle = WithStyle(Job);
 
-export default JobWithStyle
+export default JobWithStyle;
