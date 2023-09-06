@@ -30,7 +30,7 @@ export const companies: companyTypes[] = [
       },
       {
         id: 1,
-        title: "Frontend developer",
+        title: "Devops developer",
         location: "Rabat, agdal, morocco",
         posted: "23-08-2023",
         company: "Amazon",

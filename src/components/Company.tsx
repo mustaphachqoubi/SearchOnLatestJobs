@@ -11,6 +11,14 @@ const Company: React.FC = () => {
     (company) => `/company/${company.company}` === location.pathname
   );
 
+  useEffect(() => {
+        company.map((com: any) =>
+            Object.keys(com).map(
+              (c) => c !== "id" && console.log(c)
+            )
+          )
+  }, [])
+
   const CompanyStyled = styled.div`
     width: 100%;
     display: flex;
@@ -54,6 +62,17 @@ const Company: React.FC = () => {
     }
   `;
 
+  const JobsContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+`
+
+  const JobTitle = styled.div`
+
+`
+
   return (
     <CompanyStyled>
       {company.length > 0
@@ -62,7 +81,15 @@ const Company: React.FC = () => {
               (c) => c !== "id" && (
               <CompanyContainer key={com.id}>
                 <CompanyTag>{c}</CompanyTag>
-                <CompanyText>{com[c]}</CompanyText>
+                {
+                  c === "jobs" ? 
+                    com[c].map(job => (
+                      <JobsContainer key={job.id}>
+                        <JobTitle>{job.company}</JobTitle>
+                      </JobsContainer>
+                    )) 
+                    : com[c]
+                }
               </CompanyContainer>
               ) 
             )
