@@ -1,7 +1,7 @@
 import WithStyle from "./WithStyle";
 import { companies } from "../../public/companies";
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 
 const Company: React.FC = () => {
@@ -49,29 +49,44 @@ const Company: React.FC = () => {
     border-radius: 0.3rem;
   `;
 
-  const CompanyText = styled.div`
-    font-size: 0.8rem;
-    font-weight: normal;
-    text-align: start;
-    width: 100%;
-    display: flex;
-    justify-content: start;
-    @media (max-width: 400px) {
-      text-align: center;
-      justify-content: center;
-    }
-  `;
 
   const JobsContainer = styled.div`
+
+ display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  overflow: hidden;
+  overflow-x: auto;
+  width: 100%;
+     flex: 1;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+
+`
+
+  const JobTitle = styled(Link)`
+  text-decoration: none;
+  color: white;
   display: flex;
-  flex-direction: column;
-  gap: 1rem;
-
+  align-items: center;
+  justify-content: center;
+  background-color: #242424;
+  border: 2px solid white;
+  border-radius: .3rem;
+  padding: .3rem;
+  width: 5rem;
+  font-weight: bold;
+  cursor: pointer;
+  &:hover{
+    background-color: white;
+    color: #242424;
+  }
 `
 
-  const JobTitle = styled.div`
 
-`
 
   return (
     <CompanyStyled>
@@ -82,12 +97,15 @@ const Company: React.FC = () => {
               <CompanyContainer key={com.id}>
                 <CompanyTag>{c}</CompanyTag>
                 {
-                  c === "jobs" ? 
-                    com[c].map(job => (
-                      <JobsContainer key={job.id}>
-                        <JobTitle>{job.company}</JobTitle>
-                      </JobsContainer>
-                    )) 
+                  c === "jobs" ? (
+                  <JobsContainer>
+                      {
+                        com[c].map((job: any) => (
+                        <JobTitle to={`/job/${job.id}`}>{job.title}</JobTitle>
+                    ))
+                      }
+                    </JobsContainer>
+                  ) 
                     : com[c]
                 }
               </CompanyContainer>
