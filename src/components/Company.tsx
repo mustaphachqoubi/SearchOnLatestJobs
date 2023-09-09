@@ -112,7 +112,7 @@ const Company: React.FC = () => {
               ) 
             )
           )
-        : "Loading"}
+        : "No data is available for this company"}
     </CompanyStyled>
   );
 };
