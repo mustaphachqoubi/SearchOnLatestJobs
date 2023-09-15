@@ -132,7 +132,7 @@ const Job: React.FC = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState<number>(-1);
   const [loading, setLoading] = useState<string>("");
-  const [jobApplied] = useState(true);
+  const [jobApplied] = useState(false);
 
   const dispatch = useDispatch();
 
