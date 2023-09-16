@@ -74,3 +74,18 @@ export const jobs: jobsTypes[] = [
     description: "description test test test",
   },
 ];
+
+
+const JobsModel = [
+  {
+    _id: "kjdhfkdjsfg",
+    title: "lkfjgfd",
+    company: "fdgdfg",
+    isApplied: "kfjngkfd",
+    location: "fkjdgnfd",
+    posted_date: "jkfngkfdj",
+    description: "kjdfngfjd",
+    apply_here: "dksjfgnkdjb",
+    apply_on_thier_website: "fkljgfdjkhgk"
+  }
+]

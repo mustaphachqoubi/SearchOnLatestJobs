@@ -132,7 +132,7 @@ const Job: React.FC = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState<number>(-1);
   const [loading, setLoading] = useState<string>("");
-  const [jobApplied] = useState(false);
+  const [jobApplied] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -154,7 +154,7 @@ const Job: React.FC = () => {
     <JobStyled>
       {jobs.length > 0
         ? jobs.map(
-            (job) =>
+            (job: any) =>
               job.id === jobId &&
               Object.keys(job).map(
                 (j) =>
