@@ -76,16 +76,61 @@ export const jobs: jobsTypes[] = [
 ];
 
 
-const JobsModel = [
+export const jobsModel = [ 
   {
-    _id: "kjdhfkdjsfg",
-    title: "lkfjgfd",
-    company: "fdgdfg",
-    isApplied: "kfjngkfd",
-    location: "fkjdgnfd",
-    posted_date: "jkfngkfdj",
-    description: "kjdfngfjd",
-    apply_here: "dksjfgnkdjb",
-    apply_on_thier_website: "fkljgfdjkhgk"
+    "_id": "1",
+    "title": "Software Engineer",
+    "company": "TechCorp",
+    "isApplied": true,
+    "location": "San Francisco, CA",
+    "posted_date": "2023-09-17",
+    "description": "TechCorp is seeking a talented Software Engineer to join our team...",
+    "apply_here": "https://example.com/apply/1",
+    "apply_on_their_website": "https://techcorp.com/careers"
+  },
+  {
+    "_id": "2",
+    "title": "Product Manager",
+    "company": "InnovateTech",
+    "isApplied": false,
+    "location": "New York, NY",
+    "posted_date": "2023-09-15",
+    "description": "InnovateTech is looking for an experienced Product Manager to lead our product development...",
+    "apply_here": "https://example.com/apply/2",
+    "apply_on_their_website": "https://innovatetech.com/careers"
+  },
+  {
+    "_id": "3",
+    "title": "Data Analyst",
+    "company": "Data Insights Inc.",
+    "isApplied": false,
+    "location": "Los Angeles, CA",
+    "posted_date": "2023-09-14",
+    "description": "Data Insights Inc. is searching for a Data Analyst to analyze and interpret data...",
+    "apply_here": "https://example.com/apply/3",
+    "apply_on_their_website": "https://datainsights.com/careers"
+  },
+  {
+    "_id": "4",
+    "title": "Graphic Designer",
+    "company": "CreatiDesign Studios",
+    "isApplied": true,
+    "location": "Chicago, IL",
+    "posted_date": "2023-09-13",
+    "description": "CreatiDesign Studios is hiring a Graphic Designer to create stunning visual content...",
+    "apply_here": "https://example.com/apply/4",
+    "apply_on_their_website": "https://creatidesign.com/careers"
+  },
+  {
+    "_id": "5",
+    "title": "Marketing Manager",
+    "company": "GrowthMarketers Inc.",
+    "isApplied": false,
+    "location": "Austin, TX",
+    "posted_date": "2023-09-12",
+    "description": "GrowthMarketers Inc. is seeking a Marketing Manager to drive marketing strategies...",
+    "apply_here": "https://example.com/apply/5",
+    "apply_on_their_website": "https://growthmarketers.com/careers"
   }
 ]
+
