@@ -1,6 +1,5 @@
 import WithStyle from "./WithStyle";
 import { companies } from "../../public/companies";
-import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
 
@@ -11,13 +10,6 @@ const Company: React.FC = () => {
     (company) => `/company/${company.company}` === location.pathname
   );
 
-  useEffect(() => {
-        company.map((com: any) =>
-            Object.keys(com).map(
-              (c) => c !== "id" && console.log(c)
-            )
-          )
-  }, [])
 
   const CompanyStyled = styled.div`
     width: 100%;
@@ -85,7 +77,6 @@ const Company: React.FC = () => {
     color: #242424;
   }
 `
-
 
 
   return (

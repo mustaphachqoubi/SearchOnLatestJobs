@@ -37,7 +37,7 @@ export const companies: companyTypes[] = [
         link: "/job:1",
         description: "description test test test",
       },
-            {
+      {
         id: 3,
         title: "Frontend developer",
         location: "Rabat, agdal, morocco",
@@ -71,7 +71,7 @@ export const companies: companyTypes[] = [
         description: "description test test test",
       },
       {
-        id: 1,
+        id: 2,
         title: "Frontend developer",
         location: "Rabat, agdal, morocco",
         posted: "23-08-2023",
