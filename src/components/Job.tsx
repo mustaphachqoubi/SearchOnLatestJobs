@@ -132,18 +132,25 @@ const Job: React.FC = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState<number>(-1);
   const [loading, setLoading] = useState<string>("");
-  const [jobApplied] = useState(true);
+  const [isApplied, setIsApplied] = useState(false);
 
   const dispatch = useDispatch();
 
   useEffect(() => {
-    jobs.length > 0
-      ? jobs.map((job) => {
-          `/job/${job.id}` === location.pathname && setJobId(job.id);
-        })
-      : setLoading("Loading...");
-  }, []);
+    if(jobs.length > 0){
+      const foundJob = jobs.find((job) => `/job/${job.id}` === location.pathname )
 
+      if(foundJob){
+        setJobId(foundJob.id)
+        setIsApplied(foundJob.isApplied)
+      }
+    } else{
+      setLoading("Loading...");
+    }
+      
+  }, [jobs, location.pathname]);
+
+  
   const handleJobProcess = () => {
     jobs?.map(
       (job) => job.id === jobId && dispatch(setCheckJobProcessFor(job.company))
@@ -160,6 +167,7 @@ const Job: React.FC = () => {
                 (j) =>
                   j !== "id" &&
                   j !== "link" &&
+                  j !== "isApplied" &&
                   j !== "description" && (
                     <JobContainer key={job.id}>
                       <JobTag>
@@ -178,7 +186,8 @@ const Job: React.FC = () => {
       </JobDescription>
       <Hr />
 
-      {jobApplied === false ? (
+
+        {isApplied === false ? (
         <ApplyToJob>
           <ApplyAndTrackTheProcess to={`/appliedjobs`}>
             Apply & track
@@ -201,6 +210,7 @@ const Job: React.FC = () => {
           </CheckJobIn>
         </CheckContainer>
       )}
+
     </JobStyled>
   );
 };
