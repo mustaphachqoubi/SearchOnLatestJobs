@@ -6,7 +6,8 @@ interface jobsTypes {
   company: string;
   link: string;
   description: string;
-  isApplied: boolean
+  isApplied: boolean,
+  apply_link: string
 }
 
 interface AppliedJobsTypes {
@@ -46,7 +47,9 @@ export const jobs: jobsTypes[] = [
     company: "Amazon",
     link: "/job:1",
     description: "description test test test",
-    isApplied: true
+    isApplied: true,
+        apply_link: "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3721961154"
+
   },
   {
     id: 2,
@@ -56,7 +59,8 @@ export const jobs: jobsTypes[] = [
     company: "Facebook",
     link: "/job:2",
     description: "description test test test",
-    isApplied: false
+    isApplied: false,
+    apply_link: "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3721961154"
   },
   {
     id: 3,
@@ -66,7 +70,8 @@ export const jobs: jobsTypes[] = [
     company: "Youtube",
     link: "/job:3",
     description: "description test test test",
-    isApplied: true
+    isApplied: true,
+        apply_link: "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3721961154"
   },
   {
     id: 4,
@@ -76,7 +81,8 @@ export const jobs: jobsTypes[] = [
     company: "Google",
     link: "/job:4",
     description: "description test test test",
-    isApplied: false
+    isApplied: false,
+    apply_link: "https://www.linkedin.com/jobs/collections/recommended/?currentJobId=3721961154"
   },
 ];
 

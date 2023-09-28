@@ -132,7 +132,8 @@ const Job: React.FC = () => {
   const location = useLocation();
   const [jobId, setJobId] = useState<number>(-1);
   const [loading, setLoading] = useState<string>("");
-  const [isApplied, setIsApplied] = useState(false);
+  const [isApplied, setIsApplied] = useState<boolean>(false);
+  const [applyLink, setApplyLink] = useState<string>("");
 
   const dispatch = useDispatch();
 
@@ -143,6 +144,7 @@ const Job: React.FC = () => {
       if(foundJob){
         setJobId(foundJob.id)
         setIsApplied(foundJob.isApplied)
+        setApplyLink(foundJob.apply_link)
       }
     } else{
       setLoading("Loading...");
@@ -164,12 +166,13 @@ const Job: React.FC = () => {
             (job: any) =>
               job.id === jobId &&
               Object.keys(job).map(
-                (j) =>
+                (j, index) =>
                   j !== "id" &&
                   j !== "link" &&
                   j !== "isApplied" &&
+                  j !== "apply_link" &&
                   j !== "description" && (
-                    <JobContainer key={job.id}>
+                    <JobContainer key={index}>
                       <JobTag>
                         {j === "company" ? "" : "Job"} {j}
                       </JobTag>
@@ -193,7 +196,7 @@ const Job: React.FC = () => {
             Apply & track
           </ApplyAndTrackTheProcess>
 
-          <ApplyOnWebsite to="/">Apply on Indeed</ApplyOnWebsite>
+          <ApplyOnWebsite to={applyLink}>Apply on Indeed</ApplyOnWebsite>
         </ApplyToJob>
       ) : (
         <CheckContainer>
@@ -205,7 +208,7 @@ const Job: React.FC = () => {
           >
             Check job process
           </CheckJobIn>
-          <CheckJobIn to="https://google.com" target="_blank">
+          <CheckJobIn to={applyLink} target="_blank">
             Check job on Linkedin
           </CheckJobIn>
         </CheckContainer>
