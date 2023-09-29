@@ -192,7 +192,7 @@ const Job: React.FC = () => {
 
         {isApplied === false ? (
         <ApplyToJob>
-          <ApplyAndTrackTheProcess to={`/appliedjobs`}>
+          <ApplyAndTrackTheProcess target="_blank" to={applyLink}>
             Apply & track
           </ApplyAndTrackTheProcess>
 
