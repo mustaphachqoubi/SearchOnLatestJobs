@@ -2884,10 +2884,7 @@
     }
   },
   "configSettings": {
-    "output": [
-      "html",
-      "json"
-    ],
+    "output": ["html", "json"],
     "maxWaitForFcp": 30000,
     "maxWaitForLoad": 45000,
     "formFactor": "mobile",
@@ -2920,22 +2917,13 @@
     "extraHeaders": null,
     "precomputedLanternData": null,
     "onlyAudits": null,
-    "onlyCategories": [
-      "performance",
-      "accessibility",
-      "best-practices",
-      "seo"
-    ],
+    "onlyCategories": ["performance", "accessibility", "best-practices", "seo"],
     "skipAudits": null
   },
   "categories": {
     "performance": {
       "title": "Performance",
-      "supportedModes": [
-        "navigation",
-        "timespan",
-        "snapshot"
-      ],
+      "supportedModes": ["navigation", "timespan", "snapshot"],
       "auditRefs": [
         {
           "id": "first-contentful-paint",
@@ -3254,10 +3242,7 @@
       "title": "Accessibility",
       "description": "These checks highlight opportunities to [improve the accessibility of your web app](https://web.dev/lighthouse-accessibility/). Only a subset of accessibility issues can be automatically detected so manual testing is also encouraged.",
       "manualDescription": "These items address areas which an automated testing tool cannot cover. Learn more in our guide on [conducting an accessibility review](https://developers.google.com/web/fundamentals/accessibility/how-to-review).",
-      "supportedModes": [
-        "navigation",
-        "snapshot"
-      ],
+      "supportedModes": ["navigation", "snapshot"],
       "auditRefs": [
         {
           "id": "accesskeys",
@@ -3525,11 +3510,7 @@
     },
     "best-practices": {
       "title": "Best Practices",
-      "supportedModes": [
-        "navigation",
-        "timespan",
-        "snapshot"
-      ],
+      "supportedModes": ["navigation", "timespan", "snapshot"],
       "auditRefs": [
         {
           "id": "is-on-https",
@@ -3619,10 +3600,7 @@
       "title": "SEO",
       "description": "These checks ensure that your page is following basic search engine optimization advice. There are many additional factors Lighthouse does not score here that may affect your search ranking, including performance on [Core Web Vitals](https://web.dev/learn-web-vitals/). [Learn more](https://support.google.com/webmasters/answer/35769).",
       "manualDescription": "Run these additional validators on your site to check additional SEO best practices.",
-      "supportedModes": [
-        "navigation",
-        "snapshot"
-      ],
+      "supportedModes": ["navigation", "snapshot"],
       "auditRefs": [
         {
           "id": "viewport",
@@ -5473,9 +5451,7 @@
       "lighthouse-core/audits/is-on-https.js | description": [
         "audits[is-on-https].description"
       ],
-      "lighthouse-core/audits/viewport.js | title": [
-        "audits.viewport.title"
-      ],
+      "lighthouse-core/audits/viewport.js | title": ["audits.viewport.title"],
       "lighthouse-core/audits/viewport.js | description": [
         "audits.viewport.description"
       ],
@@ -5663,9 +5639,7 @@
           "path": "audits[critical-request-chains].displayValue"
         }
       ],
-      "lighthouse-core/audits/redirects.js | title": [
-        "audits.redirects.title"
-      ],
+      "lighthouse-core/audits/redirects.js | title": ["audits.redirects.title"],
       "lighthouse-core/audits/redirects.js | description": [
         "audits.redirects.description"
       ],
@@ -5955,9 +5929,7 @@
       "lighthouse-core/audits/preload-lcp-image.js | description": [
         "audits[preload-lcp-image].description"
       ],
-      "lighthouse-core/audits/csp-xss.js | title": [
-        "audits[csp-xss].title"
-      ],
+      "lighthouse-core/audits/csp-xss.js | title": ["audits[csp-xss].title"],
       "lighthouse-core/audits/csp-xss.js | description": [
         "audits[csp-xss].description"
       ],
@@ -6555,9 +6527,7 @@
       "lighthouse-core/audits/seo/hreflang.js | description": [
         "audits.hreflang.description"
       ],
-      "lighthouse-core/audits/seo/plugins.js | title": [
-        "audits.plugins.title"
-      ],
+      "lighthouse-core/audits/seo/plugins.js | title": ["audits.plugins.title"],
       "lighthouse-core/audits/seo/plugins.js | description": [
         "audits.plugins.description"
       ],

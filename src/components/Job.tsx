@@ -138,21 +138,21 @@ const Job: React.FC = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if(jobs.length > 0){
-      const foundJob = jobs.find((job) => `/job/${job.id}` === location.pathname )
+    if (jobs.length > 0) {
+      const foundJob = jobs.find(
+        (job) => `/job/${job.id}` === location.pathname
+      );
 
-      if(foundJob){
-        setJobId(foundJob.id)
-        setIsApplied(foundJob.isApplied)
-        setApplyLink(foundJob.apply_link)
+      if (foundJob) {
+        setJobId(foundJob.id);
+        setIsApplied(foundJob.isApplied);
+        setApplyLink(foundJob.apply_link);
       }
-    } else{
+    } else {
       setLoading("Loading...");
     }
-      
   }, [jobs, location.pathname]);
 
-  
   const handleJobProcess = () => {
     jobs?.map(
       (job) => job.id === jobId && dispatch(setCheckJobProcessFor(job.company))
@@ -189,8 +189,7 @@ const Job: React.FC = () => {
       </JobDescription>
       <Hr />
 
-
-        {isApplied === false ? (
+      {isApplied === false ? (
         <ApplyToJob>
           <ApplyAndTrackTheProcess target="_blank" to={applyLink}>
             Apply & track
@@ -213,7 +212,6 @@ const Job: React.FC = () => {
           </CheckJobIn>
         </CheckContainer>
       )}
-
     </JobStyled>
   );
 };
