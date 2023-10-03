@@ -10,6 +10,10 @@ const Company: React.FC = () => {
     (company) => `/company/${company.company}` === location.pathname
   );
 
+  const getBackToPreviousPage = () => {
+    window.history.back()
+  }
+
   const CompanyStyled = styled.div`
     width: 100%;
     display: flex;
@@ -73,6 +77,28 @@ const Company: React.FC = () => {
     }
   `;
 
+  const NoDataContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+`
+
+  const Back = styled.button`
+    border: 2px solid white;
+    border-radius: .3rem;
+    padding: .5rem 1.5rem;
+    font-weight: bold;
+    background-color: transparent;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+    &:hover{
+      background-color: white;
+      color: #242424;
+    }
+`
+
   return (
     <CompanyStyled>
       {company.length > 0
@@ -95,7 +121,10 @@ const Company: React.FC = () => {
                 )
             )
           )
-        : "No data is available for this company"}
+        : <NoDataContainer>
+          No data is available for this company 
+          <Back onClick={getBackToPreviousPage}>Back</Back>
+        </NoDataContainer>}
     </CompanyStyled>
   );
 };
