@@ -49,11 +49,13 @@ const Tree = () => {
       g.attr("transform", e.transform);
     };
 
-    svg.call(d3.zoom().on("zoom", handleZoom));
+    const zoomBehavior:any = d3.zoom().on("zoom", handleZoom)
+
+    svg.call(zoomBehavior);
 
     d3.json("../../public/applied.json").then((data: any) => {
       function countStatuses(node: any) {
-        const statusCounts = {
+        const statusCounts: any = {
           rejected: 0,
           accepted: 0,
           ghosted: 0,
@@ -98,7 +100,7 @@ const Tree = () => {
         location.pathname === `/appliedjobs/All` ? data : rootNode
       );
       const links = tree(root).links();
-      const linkPathGenerator = d3
+      const linkPathGenerator:any = d3
         .linkHorizontal()
         .x((d: any) => d.y)
         .y((d: any) => d.x);

@@ -6,6 +6,10 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import React from "react";
 
+interface MenuProps {
+  menuNavDisplay: string
+}
+
 const NavbarContainer = styled.div`
   border-bottom: 2px solid white;
   display: flex;
@@ -66,7 +70,7 @@ const List = styled(Link)`
   }
 `;
 
-const Menu = styled.div`
+const Menu = styled.div<MenuProps>`
   border: 2px solid white;
   border-radius: 0.3rem;
   padding: 0.5rem;
@@ -98,7 +102,7 @@ const Icon = styled.div`
   align-items: center;
 `;
 
-const MenuNav = styled.div`
+const MenuNav = styled.div<MenuProps>`
   background: #242424;
   display: none;
   flex-direction: column;
