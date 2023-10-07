@@ -1,4 +1,4 @@
-import WithStyle from "./WithStyle";
+import { WithStyle } from "./WithStyle";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { jobs } from "../../public/jobs";

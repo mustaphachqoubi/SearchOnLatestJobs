@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import WithStyle from "./WithStyle.tsx";
+import { WithStyle } from "./WithStyle";
 import { useEffect, useState } from "react";
 import Tree from "./Tree";
 import { setSelectedCompanyName } from "../redux/selectedCompanyName";

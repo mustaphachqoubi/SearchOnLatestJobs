@@ -7,7 +7,7 @@ const ComponentStyled = styled.div`
   padding: 1rem 0rem 1rem 0rem;
 `;
 
-const WithStyle = (Component: any): React.FC => {
+export const WithStyle = (Component: any): React.FC => {
   return (props) => {
     return (
       <ComponentStyled>
@@ -17,4 +17,3 @@ const WithStyle = (Component: any): React.FC => {
   };
 };
 
-export default WithStyle;

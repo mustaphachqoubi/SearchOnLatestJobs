@@ -1,4 +1,4 @@
-import WithStyle from "./WithStyle";
+import { WithStyle } from "./WithStyle";
 import { Link, useLocation } from "react-router-dom";
 import { jobs } from "../../public/jobs";
 import React, { useEffect, useState } from "react";

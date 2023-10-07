@@ -1,4 +1,4 @@
-import WithStyle from "./WithStyle";
+import { WithStyle } from "./WithStyle";
 import { companies } from "../../public/companies";
 import { Link, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
