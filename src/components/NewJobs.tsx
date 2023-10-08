@@ -1,4 +1,3 @@
-import { WithStyle } from "./WithStyle";
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { jobs } from "../../public/jobs";
@@ -9,6 +8,9 @@ const Jobs = styled.div`
   align-items: center;
   gap: 1rem;
   flex-wrap: wrap;
+   width: 100%;
+  height: 100%;
+  padding: 1rem 0rem 1rem 0rem;
 `;
 
 const Job = styled(Link)`
@@ -100,6 +102,6 @@ const NewJobs: React.FC = () => {
   );
 };
 
-const NewJobsWithStyle = WithStyle(NewJobs);
+const NewJobsWithStyle = NewJobs;
 
 export default NewJobsWithStyle;

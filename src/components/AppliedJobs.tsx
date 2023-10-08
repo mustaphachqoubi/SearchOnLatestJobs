@@ -1,5 +1,4 @@
 import { styled } from "styled-components";
-import { WithStyle } from "./WithStyle";
 import { useEffect, useState } from "react";
 import Tree from "./Tree";
 import { setSelectedCompanyName } from "../redux/selectedCompanyName";
@@ -17,6 +16,7 @@ const AppliedJobsContainer = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  padding: 1rem 0rem 1rem 0rem;
 `;
 
 const SelectCompany = styled.div`
@@ -101,6 +101,6 @@ const AppliedJobs: React.FC = () => {
   );
 };
 
-const AppliedJobsWithStyle = WithStyle(AppliedJobs);
+const AppliedJobsWithStyle = AppliedJobs;
 
 export default AppliedJobsWithStyle;

@@ -1,4 +1,3 @@
-import { WithStyle } from "./WithStyle";
 import { companies } from "../../public/companies";
 import { Link, useLocation } from "react-router-dom";
 import { styled } from "styled-components";
@@ -129,6 +128,6 @@ const Company: React.FC = () => {
   );
 };
 
-const JobWithStyle = WithStyle(Company);
+const JobWithStyle = Company;
 
 export default JobWithStyle;

@@ -1,4 +1,3 @@
-import { WithStyle } from "./WithStyle";
 import { Link, useLocation } from "react-router-dom";
 import { jobs } from "../../public/jobs";
 import React, { useEffect, useState } from "react";
@@ -216,6 +215,6 @@ const Job: React.FC = () => {
   );
 };
 
-const JobWithStyle = WithStyle(Job);
+const JobWithStyle = Job;
 
 export default JobWithStyle;
