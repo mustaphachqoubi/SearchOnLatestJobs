@@ -1,5 +1,13 @@
+import { styled } from 'styled-components'
+
+const LoginContainer = styled.div`
+ padding: 2rem 0rem;
+ font-weight: bold;
+ font-size: 2rem
+`
+
 const Login = () => {
-  return <h1>Login</h1>;
+  return <LoginContainer>Login</LoginContainer>;
 };
 
 export default Login;
