@@ -16,6 +16,23 @@ const Input = styled.input`
   background: transparent;
   padding: .5rem 2rem;
   max-width: 20rem;
+  &::placeholder{
+  color: white;
+  }
+`
+
+const ButtonInput = styled.button`
+  border: 2px solid white;
+  border-radius: .3rem;
+  font-weight: bold;
+  color: white;
+  padding: .5rem 1rem;
+  background: transparent;
+  cursor: pointer;
+  &:hover{
+  background: white;
+  color: #242424;
+  }
 `
 
 const Login = () => {
@@ -23,6 +40,7 @@ const Login = () => {
   <LoginContainer>
     <Input type="email" placeholder="Email"></Input>
     <Input type="password" placeholder="Password"></Input>
+    <ButtonInput type="submit">Log In</ButtonInput>
   </LoginContainer>
   );
 };
