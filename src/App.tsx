@@ -54,7 +54,7 @@ export const App: React.FC = () => {
             }
           />
           <Route
-            path="/login"
+            path="/signin"
             element={
               <Suspense fallback={<Loading />}>
                 <Login />

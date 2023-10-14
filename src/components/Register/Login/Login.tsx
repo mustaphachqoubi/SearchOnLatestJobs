@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { styled } from 'styled-components'
 
 const LoginContainer = styled.form`
@@ -16,8 +17,10 @@ const Input = styled.input`
   background: transparent;
   padding: .5rem 2rem;
   max-width: 20rem;
+  font-weight: bold;
   &::placeholder{
   color: white;
+  font-weight: bold;
   }
 `
 
@@ -35,12 +38,43 @@ const ButtonInput = styled.button`
   }
 `
 
+const OrContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  gap: 1rem;
+`
+
+const Hr = styled.hr`
+  width: 100%;
+  background-color: white;
+  border: none;
+  height: 2px;
+`
+
+const ForgotPass = styled(Link)`
+  text-decoration: none;
+  font-size: .8rem;
+  color: white;
+  display: flex;
+  justify-content: end;
+  &:hover{
+  text-decoration: underline;
+  }
+`
+
 const Login = () => {
   return (
   <LoginContainer>
     <Input type="email" placeholder="Email"></Input>
     <Input type="password" placeholder="Password"></Input>
-    <ButtonInput type="submit">Log In</ButtonInput>
+    <ForgotPass to="/forgotpassword">Forgot your Password ?</ForgotPass>
+    <ButtonInput type="submit">Sign In</ButtonInput>
+
+   <OrContainer>
+   </OrContainer> 
+
   </LoginContainer>
   );
 };
