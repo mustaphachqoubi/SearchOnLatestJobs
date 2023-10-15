@@ -8,10 +8,12 @@ const AppliedJobs = lazy(() => import("./components/AppliedJobs"));
 const Footer = lazy(() => import("./components/Footer"));
 const Job = lazy(() => import("./components/Job"));
 const NotFound = lazy(() => import("./components/NotFound"));
-const Login = lazy(() => import("./components/Register/Login/Login"));
+const Signin = lazy(() => import("./components/Register/Signin/SignIn"));
 const SignUp = lazy(() => import("./components/Register/Signup/Signup"));
 const Home = lazy(() => import("./components/Home"));
 const Company = lazy(() => import("./components/Company"));
+const ForgotPass = lazy(() => import("./components/Register/Signin/ForgotPass"));
+const Sso= lazy(() => import("./components/Register/Signin/Sso"));
 
 const LoadingStyled = styled.h1`
   display: flex;
@@ -57,7 +59,23 @@ export const App: React.FC = () => {
             path="/signin"
             element={
               <Suspense fallback={<Loading />}>
-                <Login />
+                <Signin/>
+              </Suspense>
+            }
+          />
+          <Route
+            path="/forgotPassword"
+            element={
+              <Suspense fallback={<Loading/>}>
+                <ForgotPass />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/sso"
+            element={
+              <Suspense fallback={<Loading/>}>
+                <Sso/>
               </Suspense>
             }
           />

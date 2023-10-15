@@ -38,24 +38,10 @@ const ButtonInput = styled.button`
   }
 `
 
-const OrContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20%;
-  gap: 1rem;
-`
-
-const Hr = styled.hr`
-  width: 100%;
-  background-color: white;
-  border: none;
-  height: 2px;
-`
-
 const ForgotPass = styled(Link)`
   text-decoration: none;
   font-size: .8rem;
+  padding: .5rem 0rem;
   color: white;
   display: flex;
   justify-content: end;
@@ -64,18 +50,64 @@ const ForgotPass = styled(Link)`
   }
 `
 
+const InputContainer = styled.div`
+
+`
+
+const Sso = styled(Link)`
+  text-decoration: none;
+  font-size: .8rem;
+  padding: .5rem 0rem;
+  color: white;
+  display: flex;
+  justify-content: end;
+  &:hover{
+  text-decoration: underline;
+  }
+`
+
+const Title = styled.h2`
+ display: flex;
+ justify-content: center;
+ align-items: center
+`
+
+const NoAccount = styled.div`
+  font-size: .8rem;
+  display: flex;
+  justify-content: center;
+  gap: .5rem;
+  padding: 2rem;
+`
+
+const SignUp = styled(Link)`
+  color: white;
+  text-decoration: underline;
+  &:hover{
+  text-decoration: none;
+  }
+`
+
 const Login = () => {
   return (
+  <>
+  <Title>Sign in to your account</Title>
   <LoginContainer>
     <Input type="email" placeholder="Email"></Input>
+    <InputContainer>
     <Input type="password" placeholder="Password"></Input>
     <ForgotPass to="/forgotpassword">Forgot your Password ?</ForgotPass>
+    </InputContainer>
     <ButtonInput type="submit">Sign In</ButtonInput>
 
-   <OrContainer>
-   </OrContainer> 
-
+    <Sso to="/sso">Use single sign-on (SSO) instead</Sso>
   </LoginContainer>
+
+      <NoAccount>
+        Don't have an account? 
+        <SignUp to="/signup">Sign up</SignUp>
+      </NoAccount>
+  </>
   );
 };
 
