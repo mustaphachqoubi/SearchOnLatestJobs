@@ -1,5 +1,22 @@
+import { lazy, useState } from "react";
+
+const Dashboard = lazy(() => import("./Dashboard"))
+const LandingPage = lazy(() => import("./LandingPage"))
+
 const Home = () => {
-  return <h1>Home</h1>;
+  const [isSignedIn] = useState(false)
+
+  return (
+    <>
+    {
+      isSignedIn ? (
+      <Dashboard />
+      ) : (
+      <LandingPage />
+      )
+    }
+    </>
+  )
 };
 
 export default Home;
