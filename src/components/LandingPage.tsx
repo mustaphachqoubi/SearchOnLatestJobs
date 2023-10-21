@@ -18,7 +18,7 @@ const Hero = styled.div`
   display: flex;
   flex-direction: row;
   @media (max-width: 400px){
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
   width: 100%;
   height: 100%
@@ -30,10 +30,13 @@ const SectionTitle = styled.h2`
 
 const LeftHero = styled.div`
  flex: 1; 
+
 `
 
 const RightHero = styled.div`
  flex: 1; 
+ display: flex;
+ justify-content: center;
 `
 
 const Logic = styled.div`
@@ -61,8 +64,8 @@ const LandingPage: React.FC = () => {
 
       <Section>
         <Hero>
-        <LeftHero>Left</LeftHero>
-        <RightHero>Right</RightHero>
+        <LeftHero>Introduction about software</LeftHero>
+        <RightHero>Creative Design</RightHero>
         </Hero>
       </Section>
       
