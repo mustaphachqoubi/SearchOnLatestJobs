@@ -46,6 +46,7 @@ const NavList = styled.div`
   align-items: center;
   gap: 1rem;
   width: 100%;
+  z-index: 50;
 `;
 
 const List = styled(Link)`
