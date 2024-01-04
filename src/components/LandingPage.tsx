@@ -19,9 +19,6 @@ const Hero = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  @media (max-width: 500px) {
-    flex-direction: column-reverse;
-  }
   width: 100%;
   height: 100%;
 `;
@@ -74,7 +71,7 @@ const LogicText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100vh;
+  width: 100%;
   height: 50vh;
 `;
 
@@ -99,7 +96,7 @@ const WindowBTNS = styled.div`
   padding-left: 1rem;
   gap: 1rem;
   width: 100%;
-  height: 10%;
+  height: 40px;
 `;
 
 const WindowBTN = styled.div`
@@ -173,6 +170,15 @@ const LandingPage: React.FC = () => {
   const lastLogicText = useRef(null);
   const authorSectionRef = useRef(null);
   const worldSectionRef = useRef(null);
+  const endLogicTextRef = useRef(null);
+
+  const Sentences = [
+    {id: 1, sentence: "one"},
+    {id: 2, sentence: "two"},
+    {id: 3, sentence: "three"},
+    {id: 4, sentence: "four"},
+    {id: 5, sentence: " "},
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
@@ -181,11 +187,13 @@ const LandingPage: React.FC = () => {
           authorSectionRef.current.style.display = "flex";
           worldSectionRef.current.style.display = "flex";
 
-          logicCreativeRef.current.style.top = "25%";
-          logicCreativeRef.current.style.position = "absolute";
+          logicCreativeRef.current.style.position = "static";
+          logicCreativeRef.current.style.height = "70vh";
+          endLogicTextRef.current.style.display = "none";
         } else {
           logicCreativeRef.current.style.position = "fixed";
-          logicCreativeRef.current.style.top = "50%";
+          logicCreativeRef.current.style.top = "40%";
+          endLogicTextRef.current.style.display = "flex";
         }
       } else {
         authorSectionRef.current.style.display = "none";
@@ -222,11 +230,18 @@ const LandingPage: React.FC = () => {
 
       <SectionTitle ref={sectionTitleRef}>Software Logic</SectionTitle>
       <Logic>
-        <LogicText>one</LogicText>
+
+        {
+          Sentences.map((sentence, index) => (
+            <LogicText key={sentence.id} ref={index === Sentences.length - 2 ? lastLogicText : index === Sentences.length - 1 ? endLogicTextRef : null}>{sentence.sentence}</LogicText>
+          ))
+        }
+        
+        {/*<LogicText>one</LogicText>
         <LogicText>two</LogicText>
         <LogicText>three</LogicText>
         <LogicText ref={lastLogicText}>four</LogicText>
-        <LogicText></LogicText>
+        <LogicText ref={endLogicTextRef}></LogicText>*/}
 
         <LogicCreative ref={logicCreativeRef}>
           <WindowBTNS>
