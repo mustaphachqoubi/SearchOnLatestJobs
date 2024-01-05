@@ -14,21 +14,13 @@ const Section = styled.div`
   height: 100vh;
 `;
 
-const Hero = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: 100%;
-`;
-
 const HeroButtons = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 1rem;
   flex-direction: row;
+  width: 100%;
   @media (max-width: 500px) {
     flex-direction: column;
   }
@@ -38,23 +30,38 @@ const SectionTitle = styled.h2`
   text-decoration: underline;
 `;
 
-const HeroContent = styled.div`
-  line-height: 2.5rem;
+const Hero = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+  height: 85%;
 `;
 
-const HeroCreative = styled.div`
-  z-index: 0px;
-  position: absolute;
-  top: 0;
+const HeroContent = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   width: 100%;
-  height: 35vh;
+  gap: 2rem;
+  `;
+
+const HeroCreative = styled.div`
+  flex: 1;
+  z-index: 0px;
+  width: 100%;
+  height: 40vh;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
   border-radius: 12px;
   @media (max-width: 500px) {
-    height: 30vh;
+    height: 35vh;
   }
 `;
 
@@ -71,8 +78,15 @@ const LogicText = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 70vw;
   height: 50vh;
+  font-size: 5vw;
+  font-weight: bold;
+  text-align: center;
+  @media (max-width: 700px){
+  font-size: 10vw;
+  width: 100%;
+  }
 `;
 
 const LogicCreative = styled.div`
@@ -80,7 +94,12 @@ const LogicCreative = styled.div`
   bottom: 0;
   z-index: 2;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .3rem 1rem 0rem 1rem;
+  flex-direction: column;
   background: #343434;
+  color: black;
   width: 70vw;
   border-radius: 1rem;
   overflow: hidden;
@@ -93,7 +112,6 @@ const WindowBTNS = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
-  padding-left: 1rem;
   gap: 1rem;
   width: 100%;
   height: 40px;
@@ -106,20 +124,34 @@ const WindowBTN = styled.div`
   border-radius: 100%;
 `;
 
-const WindowContent = styled.div``;
+const WindowContent = styled.div`
+  background: white;
+  width: 100%;
+  height: 100%;
+  flex: 9;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+`;
 
 const H1 = styled.h1`
-  font-size: 7vw;
   text-align: center;
-  line-height: 3.5rem;
-  @media (max-width: 700px) {
-    font-size: 10vw;
+  font-size: 500%;
+  @media (max-width: 700px){
+    font-size: 230%;
   }
 `;
 
 const H3 = styled.h3`
   text-align: center;
   font-weight: bold;
+
+  @media (min-width: 700px){
+    font-size: 200%;
+  }
 `;
 
 const Explain = styled.div`
@@ -130,7 +162,7 @@ const Explain = styled.div`
   align-items: center;
   border-radius: 20px;
   cursor: pointer;
-  font-size: 110%;
+  font-size: 100%;
   width: 30%;
   height: 5vh;
   &:hover {
@@ -138,8 +170,11 @@ const Explain = styled.div`
     color: #242424;
   }
   transition: all 0.4s ease;
-  @media (max-width: 500px) {
+  @media (max-width: 700px) {
     width: 100%;
+  }
+  @media (min-width: 2000px) {
+  font-size: 250%;
   }
 `;
 
@@ -150,17 +185,20 @@ const Start = styled.button`
   color: #242424;
   cursor: pointer;
   font-weight: bold;
-  font-size: 110%;
+  font-size: 100%;
   width: 30%;
   height: 5vh;
   transition: all 0.4s ease;
   &:hover {
-    background: linear-gradient(45deg, #0ce39a, #69007f, #fc0987);
+    background: linear-gradient(45deg, #29c667, #d41d82, #3998f6);
     border: 2px solid white;
     color: white;
-  }
-  @media (max-width: 500px) {
+  };
+  @media (max-width: 700px) {
     width: 100%;
+  }
+  @media (min-width: 2000px) {
+  font-size: 250%;
   }
 `;
 
@@ -173,11 +211,25 @@ const LandingPage: React.FC = () => {
   const endLogicTextRef = useRef(null);
 
   const Sentences = [
-    {id: 1, sentence: "one"},
-    {id: 2, sentence: "two"},
-    {id: 3, sentence: "three"},
-    {id: 4, sentence: "four"},
-    {id: 5, sentence: " "},
+    {id: 0, sentence: "First", number: true},
+    {id: 1, sentence: `
+      You will find just the suitable jobs that the algorithm choosed carfelly for you.
+      `, number: false},
+    {id: 2, sentence: `Second`, number: true},
+    {id: 3, sentence: `
+      After applying to the company that you choose instead of they choosing you, you will find their data in your map
+    `, number: false},
+    {id: 4, sentence: "And, that's it", number: true},
+    {id: 5, sentence: `
+     Now, you have the CV's of the companies and you can hire or ban whatever you want 
+    `, number: false},
+    {id: 6, sentence: " "},
+  ]
+  const Colors = [
+    {id: 1, hex: "#29c667"},
+    {id: 2, hex: "#d41d82"},
+    {id: 3, hex: "#3998f6"},
+    {id: 4, hex: "#febc17"},
   ]
 
   useEffect(() => {
@@ -193,13 +245,14 @@ const LandingPage: React.FC = () => {
         } else {
           logicCreativeRef.current.style.position = "fixed";
           logicCreativeRef.current.style.top = "40%";
+          logicCreativeRef.current.style.bottom = "-10%";
           endLogicTextRef.current.style.display = "flex";
         }
       } else {
         authorSectionRef.current.style.display = "none";
         worldSectionRef.current.style.display = "none";
         logicCreativeRef.current.style.position = "absolute";
-        logicCreativeRef.current.style.top = "25%";
+        logicCreativeRef.current.style.top = "10%";
       }
     };
 
@@ -214,10 +267,11 @@ const LandingPage: React.FC = () => {
     <LandingContainer>
       <Section>
         <Hero>
-          <HeroContent>
-            <HeroCreative>
+          <HeroCreative>
               <img src="../public/discord.svg" />
             </HeroCreative>
+          <HeroContent>
+            
             <H1>Empowering Your Job Hunt</H1>
             <H3>Track, Apply, and Paving the Path to Success 🏆</H3>
             <HeroButtons>
@@ -233,16 +287,18 @@ const LandingPage: React.FC = () => {
 
         {
           Sentences.map((sentence, index) => (
-            <LogicText key={sentence.id} ref={index === Sentences.length - 2 ? lastLogicText : index === Sentences.length - 1 ? endLogicTextRef : null}>{sentence.sentence}</LogicText>
+            <LogicText
+              style={{
+                color: sentence.number === true ?
+                  `${Colors[Math.floor(Math.random() * Colors.length)].hex}`
+                  : undefined,
+
+              }}
+              key={sentence.id} 
+              ref={index === Sentences.length - 2 ? lastLogicText : index === Sentences.length - 1 ? endLogicTextRef : null}>{sentence.sentence}</LogicText>
           ))
         }
         
-        {/*<LogicText>one</LogicText>
-        <LogicText>two</LogicText>
-        <LogicText>three</LogicText>
-        <LogicText ref={lastLogicText}>four</LogicText>
-        <LogicText ref={endLogicTextRef}></LogicText>*/}
-
         <LogicCreative ref={logicCreativeRef}>
           <WindowBTNS>
             <WindowBTN></WindowBTN>
@@ -250,7 +306,9 @@ const LandingPage: React.FC = () => {
             <WindowBTN></WindowBTN>
           </WindowBTNS>
 
-          <WindowContent></WindowContent>
+          <WindowContent>
+            one
+          </WindowContent>
         </LogicCreative>
       </Logic>
 

@@ -28,6 +28,19 @@ const Gif = styled.img`
   width: 50px;
 `;
 
+const AppContainer = styled.div`
+  max-width: 1440px;
+  width: 100%;
+`
+
+const TheApp = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`
+
 const Loading = () => {
   return (
     <LoadingStyled>
@@ -39,7 +52,9 @@ const Loading = () => {
 
 export const App: React.FC = () => {
   return (
-    <>
+    <TheApp>
+
+    <AppContainer>
       <BrowserRouter>
         <Suspense fallback={<Loading />}>
           <Navbar />
@@ -141,6 +156,7 @@ export const App: React.FC = () => {
           <Footer />
         </Suspense>
       </BrowserRouter>
-    </>
+    </AppContainer>
+    </TheApp>
   );
 };

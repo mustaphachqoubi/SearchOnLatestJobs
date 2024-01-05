@@ -16,6 +16,8 @@ const NavbarContainer = styled.div`
   justify-content: between;
   align-items: center;
   position: relative;
+  padding: .3rem 0rem;
+  z-index: 1
 `;
 
 const Logo = styled(Link)`
@@ -112,7 +114,7 @@ const MenuNav = styled.div<MenuProps>`
   gap: 0.5rem;
   padding: 1.5rem;
   position: absolute;
-  top: 4.6rem;
+  top: 3.2rem;
   left: 0;
   right: 0;
   border: 2px solid white;
