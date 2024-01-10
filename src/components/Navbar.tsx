@@ -11,6 +11,7 @@ interface MenuProps {
 }
 
 const NavbarContainer = styled.div`
+  background: #242424;
   border-bottom: 2px solid white;
   display: flex;
   justify-content: between;

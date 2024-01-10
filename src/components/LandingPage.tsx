@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { styled } from "styled-components";
+import Navbar from "./Navbar";
 
 const LandingContainer = styled.div`
   width: 100%;
@@ -48,7 +49,7 @@ const HeroContent = styled.div`
   flex-direction: column;
   width: 100%;
   gap: 2rem;
-  `;
+`;
 
 const HeroCreative = styled.div`
   flex: 1;
@@ -83,9 +84,9 @@ const LogicText = styled.div`
   font-size: 5vw;
   font-weight: bold;
   text-align: center;
-  @media (max-width: 700px){
-  font-size: 10vw;
-  width: 100%;
+  @media (max-width: 700px) {
+    font-size: 10vw;
+    width: 100%;
   }
 `;
 
@@ -96,13 +97,14 @@ const LogicCreative = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: .3rem 1rem 0rem 1rem;
+  padding: 0.3rem 1rem 0rem 1rem;
   flex-direction: column;
   background: #343434;
   color: black;
   width: 70vw;
   border-radius: 1rem;
   overflow: hidden;
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
   @media (max-width: 700px) {
     width: 100%;
   }
@@ -125,22 +127,26 @@ const WindowBTN = styled.div`
 `;
 
 const WindowContent = styled.div`
-  background: white;
+  position: relative;
+  z-index: 1;
+  background: #242424;
   width: 100%;
   height: 100%;
   flex: 9;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
+  border-top-left-radius: 0.5rem;
+  border-top-right-radius: 0.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  padding: 1rem;
+  pointer-events: none;
 `;
 
 const H1 = styled.h1`
   text-align: center;
   font-size: 500%;
-  @media (max-width: 700px){
+  @media (max-width: 700px) {
     font-size: 230%;
   }
 `;
@@ -149,7 +155,7 @@ const H3 = styled.h3`
   text-align: center;
   font-weight: bold;
 
-  @media (min-width: 700px){
+  @media (min-width: 700px) {
     font-size: 200%;
   }
 `;
@@ -174,7 +180,7 @@ const Explain = styled.div`
     width: 100%;
   }
   @media (min-width: 2000px) {
-  font-size: 250%;
+    font-size: 250%;
   }
 `;
 
@@ -193,13 +199,82 @@ const Start = styled.button`
     background: linear-gradient(45deg, #29c667, #d41d82, #3998f6);
     border: 2px solid white;
     color: white;
-  };
+  }
   @media (max-width: 700px) {
     width: 100%;
   }
   @media (min-width: 2000px) {
-  font-size: 250%;
+    font-size: 250%;
   }
+`;
+
+const Job = styled.div`
+  color: white;
+  border: 2px solid;
+  border-radius: 0.3rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  text-decoration: none;
+  padding: 1rem;
+  gap: 1rem;
+  background: #242424;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  width: 15rem;
+  @media (max-width: 400px) {
+    width: 100%;
+  }
+`;
+
+const JobTitle = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
+const JobCompany = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: underline;
+  font-size: 0.8rem;
+  font-weight: bold;
+`;
+
+const Container = styled.div`
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  flex-direction: column;
+`;
+
+const JobLocation = styled.div`
+  border: 2px solid white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+  text-align: center;
+`;
+
+const JobTime = styled.div`
+  border: 2px solid white;
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.7rem;
+  font-weight: bold;
 `;
 
 const LandingPage: React.FC = () => {
@@ -209,31 +284,58 @@ const LandingPage: React.FC = () => {
   const authorSectionRef = useRef(null);
   const worldSectionRef = useRef(null);
   const endLogicTextRef = useRef(null);
+  const logicTextRef = useRef(null);
+
+  const [sentenceIndex, setSentenceIndex] = useState(0);
+  const [visibleSentences, setVisibleSentences] = useState([]);
 
   const Sentences = [
-    {id: 0, sentence: "First", number: true},
-    {id: 1, sentence: `
+    { id: 0, sentence: "First", number: true },
+    {
+      id: 1,
+      sentence: `
       You will find just the suitable jobs that the algorithm choosed carfelly for you.
-      `, number: false},
-    {id: 2, sentence: `Second`, number: true},
-    {id: 3, sentence: `
+      `,
+      number: false,
+    },
+    { id: 2, sentence: `Second`, number: true },
+    {
+      id: 3,
+      sentence: `
       After applying to the company that you choose instead of they choosing you, you will find their data in your map
-    `, number: false},
-    {id: 4, sentence: "And, that's it", number: true},
-    {id: 5, sentence: `
+    `,
+      number: false,
+    },
+    { id: 4, sentence: "And, that's it", number: true },
+    {
+      id: 5,
+      sentence: `
      Now, you have the CV's of the companies and you can hire or ban whatever you want 
-    `, number: false},
-    {id: 6, sentence: " "},
-  ]
+    `,
+      number: false,
+    },
+    { id: 6, sentence: " " },
+  ];
   const Colors = [
-    {id: 1, hex: "#29c667"},
-    {id: 2, hex: "#d41d82"},
-    {id: 3, hex: "#3998f6"},
-    {id: 4, hex: "#febc17"},
-  ]
+    { id: 1, hex: "#29c667" },
+    { id: 2, hex: "#d41d82" },
+    { id: 3, hex: "#3998f6" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
+      const visibleSentences = Sentences.map((sentence, index) => {
+        const element = document.getElementById(`sentence-${sentence.id}`);
+        const rect = element.getBoundingClientRect();
+        const isVisible = rect.top <= window.innerHeight && rect.bottom >= 0;
+        return { index, isVisible };
+      });
+
+      const newSentenceIndex = visibleSentences.find((item) => item.isVisible)?.index;
+      if (newSentenceIndex !== undefined) {
+        setSentenceIndex(newSentenceIndex);
+      }
+
       if (sectionTitleRef.current.getBoundingClientRect().top <= 0) {
         if (lastLogicText.current.getBoundingClientRect().top <= 0) {
           authorSectionRef.current.style.display = "flex";
@@ -261,17 +363,16 @@ const LandingPage: React.FC = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [sentenceIndex, Sentences]);
 
   return (
     <LandingContainer>
       <Section>
         <Hero>
           <HeroCreative>
-              <img src="../public/discord.svg" />
-            </HeroCreative>
+            <img src="../public/discord.svg" />
+          </HeroCreative>
           <HeroContent>
-            
             <H1>Empowering Your Job Hunt</H1>
             <H3>Track, Apply, and Paving the Path to Success 🏆</H3>
             <HeroButtons>
@@ -284,21 +385,28 @@ const LandingPage: React.FC = () => {
 
       <SectionTitle ref={sectionTitleRef}>Software Logic</SectionTitle>
       <Logic>
-
-        {
-          Sentences.map((sentence, index) => (
-            <LogicText
-              style={{
-                color: sentence.number === true ?
-                  `${Colors[Math.floor(Math.random() * Colors.length)].hex}`
+        {Sentences.map((sentence, index) => (
+          <LogicText
+            id={`sentence-${sentence.id}`}
+            style={{
+              color:
+                sentence.number === true
+                  ? `${Colors[index++ % Colors.length].hex}`
                   : undefined,
+            }}
+            key={sentence.id}
+            ref={
+              index === Sentences.length - 2
+                ? lastLogicText
+                : index === Sentences.length - 1
+                ? endLogicTextRef 
+                : logicTextRef
+            }
+          >
+            {sentence.sentence}
+          </LogicText>
+        ))}
 
-              }}
-              key={sentence.id} 
-              ref={index === Sentences.length - 2 ? lastLogicText : index === Sentences.length - 1 ? endLogicTextRef : null}>{sentence.sentence}</LogicText>
-          ))
-        }
-        
         <LogicCreative ref={logicCreativeRef}>
           <WindowBTNS>
             <WindowBTN></WindowBTN>
@@ -307,7 +415,92 @@ const LandingPage: React.FC = () => {
           </WindowBTNS>
 
           <WindowContent>
-            one
+            <div
+              style={{
+                position: "absolute",
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 2,
+                padding: ".5rem",
+                color: "black",
+                pointerEvents: "none",
+              }}
+            >
+              <Navbar />
+            </div>
+
+            {
+              sentenceIndex === 1 || sentenceIndex === 2 ? (
+                <Job>
+          <JobTitle>Job Title</JobTitle>
+          <JobCompany>Job company</JobCompany>
+          <Container>
+            <JobLocation>Job Location</JobLocation>
+            <JobTime>Job posted time</JobTime>
+          </Container>
+        </Job>
+              ) : sentenceIndex >= 3 ? (
+              <div
+              style={{
+                display: "flex",
+                color: "white",
+                justifyContent: "center",
+                flexDirection: "column-reverse",
+                gap: "1rem",
+                border: "2px solid white",
+                padding: "1rem",
+                borderRadius: ".5rem",
+              }}
+            >
+              <div
+                style={{
+                  border: "2px solid white",
+                  borderRadius: ".5rem",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                The company
+              </div>
+              <div
+                style={{
+                  border: "2px solid white",
+                  borderRadius: ".5rem",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                My path with them
+              </div>
+
+              <div
+                style={{
+                  border: "2px solid white",
+                  borderRadius: ".5rem",
+                  padding: "1rem",
+                  fontWeight: "bold",
+                  textAlign: "center",
+                }}
+              >
+                My choice
+              </div>
+            </div>
+              ) : null
+            }
+
+            {/*<Job>
+          <JobTitle>Job Title</JobTitle>
+          <JobCompany>Job company</JobCompany>
+          <Container>
+            <JobLocation>Job Location</JobLocation>
+            <JobTime>Job posted time</JobTime>
+          </Container>
+        </Job>*/}
+
+            
           </WindowContent>
         </LogicCreative>
       </Logic>

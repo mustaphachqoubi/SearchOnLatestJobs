@@ -1,6 +1,7 @@
 import { styled } from "styled-components";
 import { Link } from "react-router-dom";
 import { jobs } from "../../public/jobs";
+import Tree from "./Tree";
 
 const Jobs = styled.div`
   display: flex;
@@ -98,6 +99,8 @@ const NewJobs: React.FC = () => {
           </Container>
         </Job>
       ))}
+
+      <Tree />
     </Jobs>
   );
 };
